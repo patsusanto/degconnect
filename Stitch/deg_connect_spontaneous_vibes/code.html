@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Deg Connect - Spontaneous Vibes</title>
+    
+    <!-- External Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    
+    <!-- TailWind CSS with Configuration -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-container": "#d6cbff",
+                        "on-tertiary": "#ffeef4",
+                        "on-primary-fixed": "#000000",
+                        "tertiary": "#973775",
+                        "tertiary-fixed": "#fc8bce",
+                        "error-container": "#f74b6d",
+                        "on-secondary-fixed-variant": "#553ea7",
+                        "error-dim": "#a70138",
+                        "primary-container": "#9596ff",
+                        "on-tertiary-fixed": "#350026",
+                        "primary": "#4441e3",
+                        "primary-fixed": "#9596ff",
+                        "on-primary-container": "#0d0080",
+                        "secondary-fixed-dim": "#c9bbff",
+                        "secondary-fixed": "#d6cbff",
+                        "on-secondary-fixed": "#381c89",
+                        "on-tertiary-container": "#600247",
+                        "background": "#faf4ff",
+                        "primary-dim": "#3731d7",
+                        "on-background": "#312950",
+                        "inverse-on-surface": "#a197c5",
+                        "tertiary-fixed-dim": "#ec7ec0",
+                        "on-surface": "#312950",
+                        "primary-fixed-dim": "#8586ff",
+                        "inverse-primary": "#8283ff",
+                        "inverse-surface": "#0f072d",
+                        "tertiary-container": "#fc8bce",
+                        "surface-container-lowest": "#ffffff",
+                        "on-error-container": "#510017",
+                        "surface-container": "#ece4ff",
+                        "on-secondary-container": "#4b349d",
+                        "surface-bright": "#faf4ff",
+                        "on-error": "#ffefef",
+                        "on-secondary": "#f6f0ff",
+                        "surface-dim": "#d9ceff",
+                        "surface-container-low": "#f5eeff",
+                        "secondary": "#604ab3",
+                        "surface-container-high": "#e7deff",
+                        "outline-variant": "#b1a7d6",
+                        "error": "#b41340",
+                        "on-tertiary-fixed-variant": "#6c1050",
+                        "on-surface-variant": "#5e5680",
+                        "surface-variant": "#e1d7ff",
+                        "tertiary-dim": "#882a68",
+                        "surface-container-highest": "#e1d7ff",
+                        "secondary-dim": "#543da6",
+                        "surface": "#faf4ff",
+                        "outline": "#7a719d",
+                        "on-primary-fixed-variant": "#13009c",
+                        "on-primary": "#f4f1ff",
+                        "surface-tint": "#4441e3"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Be Vietnam Pro"],
+                        "label": ["Be Vietnam Pro"]
+                    }
+                },
+            },
+        }
+    </script>
+    
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+        h1, h2, h3, h4 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        .asymmetric-clip { clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%); }
+        .glass-header { background: rgba(250, 244, 255, 0.7); backdrop-filter: blur(20px); }
+    </style>
+
+    <!-- React and dependencies -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/history@5/umd/history.development.js"></script>
+    <script src="https://unpkg.com/react-router@6.3.0/umd/react-router.development.js"></script>
+    <script src="https://unpkg.com/react-router-dom@6.3.0/umd/react-router-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        const { createRoot } = ReactDOM;
+        const { MemoryRouter, Routes, Route, Link, useNavigate, useLocation } = ReactRouterDOM;
+
+        // --- Common Components ---
+
+        const BottomNav = () => {
+            const navigate = useNavigate();
+            const location = useLocation();
+
+            const tabs = [
+                { icon: 'local_fire_department', label: 'Feed', path: '/' },
+                { icon: 'search', label: 'Explore', path: '/explore' },
+                { icon: 'add_circle', label: 'Host', path: '/create' },
+                { icon: 'group', label: 'Groups', path: '#' },
+                { icon: 'person', label: 'Profile', path: '/profile' }
+            ];
+
+            return (
+                <nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-3 pb-8 bg-white/90 dark:bg-[#251f35]/90 backdrop-blur-2xl rounded-t-[2rem] z-50 shadow-[0_-10px_40px_rgba(49,41,80,0.08)]">
+                    {tabs.map((tab, idx) => {
+                        const isActive = location.pathname === tab.path;
+                        return (
+                            <button 
+                                key={idx}
+                                onClick={() => tab.path !== '#' && navigate(tab.path)}
+                                className={`flex flex-col items-center justify-center px-5 py-2 transition-all active:scale-90 duration-300 ${isActive ? 'bg-gradient-to-tr from-[#4441e3] to-[#9596ff] text-white rounded-2xl' : 'text-[#312950]/60 dark:text-white/60 hover:text-[#4441e3]'}`}
+                            >
+                                <span className="material-symbols-outlined" style={{fontVariationSettings: isActive ? "'FILL' 1" : "'FILL' 0"}}>{tab.icon}</span>
+                                <span className="font-['Be_Vietnam_Pro'] text-[10px] font-bold uppercase tracking-widest mt-1">{tab.label}</span>
+                            </button>
+                        );
+                    })}
+                </nav>
+            );
+        };
+
+        const TopAppBar = ({ title = "Deg Connect", showBack = false }) => {
+            const navigate = useNavigate();
+            return (
+                <header className="bg-[#faf4ff]/80 dark:bg-[#1a1625]/80 backdrop-blur-md fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4">
+                    <div className="flex items-center gap-4">
+                        {showBack ? (
+                            <button onClick={() => navigate(-1)} className="active:scale-95 transition-transform text-[#4441e3] dark:text-[#9596ff]">
+                                <span className="material-symbols-outlined">arrow_back</span>
+                            </button>
+                        ) : (
+                            <button className="active:scale-95 transition-transform text-[#4441e3] dark:text-[#9596ff]">
+                                <span className="material-symbols-outlined">menu</span>
+                            </button>
+                        )}
+                        <span className="font-headline font-extrabold tracking-tight text-2xl text-[#4441e3] dark:text-[#9596ff] italic">{title}</span>
+                    </div>
+                    <div className="active:scale-95 transition-transform cursor-pointer" onClick={() => navigate('/profile')}>
+                        <img alt="User Profile" className="w-10 h-10 rounded-full border-2 border-primary" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7DnAa0-7IxgzW4c3t4uo97c_Ic_cjT9wtkagSoxBmI30hABFpob475buIY6h79L-7lSNeXwyETBXbbczL6tlx2Um3Cwi5M4BUZVDyaOTpiwfrv4I0EBwKn2ap6jnQwT5Go_BJxmO4LQIlZnmd3WnwIBro1SHFEEkgC_ltEtzv4mCFKh3ad3UJH9Hv3jVS5RnvaC0whD4W2-SFE43IryxHF0KYDsos0L68uv48OKjP4Jx3oQ81CDS2BVGzH5mxT2T6AHGskSYiFqM"/>
+                    </div>
+                </header>
+            );
+        };
+
+        // --- Screens ---
+
+        const FeedScreen = () => {
+            const navigate = useNavigate();
+            return (
+                <div className="min-h-screen pb-32">
+                    <TopAppBar />
+                    <main className="pt-24 px-6 max-w-4xl mx-auto">
+                        <section className="mb-10">
+                            <h1 className="text-5xl font-black tracking-tighter text-on-surface mb-2 leading-none">Spontaneous Vibes</h1>
+                            <p className="text-on-surface-variant text-lg">Happenings right now in your orbit.</p>
+                        </section>
+                        
+                        <div className="flex gap-3 mb-8 overflow-x-auto pb-2 scrollbar-hide">
+                            {['All', 'Nightlife', 'Sports', 'Matchmaking'].map((cat, idx) => (
+                                <button key={idx} className={`${idx === 0 ? 'bg-primary text-on-primary' : 'bg-surface-container-low text-on-surface-variant'} px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wider flex items-center gap-2 border border-transparent hover:bg-surface-container`}>
+                                    <span className="material-symbols-outlined text-sm">{idx === 0 ? 'auto_awesome' : idx === 1 ? 'nightlife' : idx === 2 ? 'sports_basketball' : 'diversity_3'}</span>
+                                    {cat}
+                                </button>
+                            ))}
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+                            {/* Neon Sip */}
+                            <div onClick={() => navigate('/event-neon')} className="cursor-pointer md:col-span-12 bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm group">
+                                <div className="relative h-80 overflow-hidden">
+                                    <img className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-5t3Dwhmo6oFoWilN2lzFjLJdVOMUzamolLoASm-EZziUIrGkqOSSOXL_NmZgHDzX0Mxpko90oAx8_VliE-tKPqcPyavHumT28u5LOy962an-rTFy_y6zn3ypKfQXHgi9P6dJV3M6z5JakkOpPTzMgtMrJX-geM-jaivEnYRIF8eiJB4ITw49N9Ql71NQMITrwNLb2l09VaMQyu-1hDulQy8Blt7uwfYQKULXzRSeHOlulPlwzhHkA6R_JpWxaZGBq5srdDSskGY"/>
+                                    <div className="absolute top-4 right-4 flex gap-2">
+                                        <span className="bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-1 animate-pulse">
+                                            <span className="w-2 h-2 bg-tertiary rounded-full"></span> Live
+                                        </span>
+                                        <span className="bg-black/50 backdrop-blur-md text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Nightlife</span>
+                                    </div>
+                                </div>
+                                <div className="p-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+                                    <div>
+                                        <div className="text-primary font-bold uppercase tracking-[0.2em] text-xs mb-3">Today • 9:00 PM</div>
+                                        <h2 className="text-4xl font-extrabold tracking-tight text-on-surface leading-tight mb-2">Neon Sip: Secret Menu Night</h2>
+                                        <div className="flex items-center gap-2 text-on-surface-variant">
+                                            <span className="material-symbols-outlined text-sm">location_on</span>
+                                            <span className="font-medium">The Velvet Lounge</span>
+                                        </div>
+                                    </div>
+                                    <button className="w-full md:w-auto bg-gradient-to-tr from-primary to-primary-container text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:opacity-90 active:scale-95 transition-all">
+                                        Join Vibe
+                                    </button>
+                                </div>
+                            </div>
+
+                            {/* Basketball */}
+                            <div onClick={() => navigate('/event-basketball')} className="cursor-pointer md:col-span-7 bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm flex flex-col">
+                                <div className="relative h-64">
+                                    <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXkebfWZzHI0lkhVzhgzpDoLRHwB7F73jauvbzi0DTuCiCR2o2slyCydEfOJki2ELYfUQ8TJZ3u51ke0jWEFBUwoLYhqvGWg0Xld16bIHhmVZ85ws8I4p9uzbD4wEhGZYaPegopB5xTl_wrG_NOhTaGzxl3HSuRSMv05EEwg5izofhE9rClP9dXuQsrgm35d_LQJKCshLgiuV3x12YakCAzbWSWs1RPpqoStEIgfseITQpwsDejbFOICFpW-HmVWnpWvzlilb-aoo"/>
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                                    <div className="absolute bottom-4 left-4">
+                                        <span className="bg-primary-container/20 backdrop-blur-md border border-white/30 text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Sports</span>
+                                    </div>
+                                </div>
+                                <div className="p-6 flex-1 flex flex-col">
+                                    <div className="text-tertiary font-bold uppercase tracking-[0.2em] text-[10px] mb-2">Started 15m ago</div>
+                                    <h3 className="text-2xl font-extrabold tracking-tight mb-4">Full Court Pick-up @ Central</h3>
+                                    <div className="mt-auto space-y-4">
+                                        <div className="flex -space-x-3">
+                                            {[1,2,3].map(i => <img key={i} className="w-8 h-8 rounded-full border-2 border-surface-container-lowest" src={`https://i.pravatar.cc/150?u=${i}`} />)}
+                                            <div className="w-8 h-8 rounded-full bg-surface-container-high border-2 border-surface-container-lowest flex items-center justify-center text-[10px] font-bold">+5</div>
+                                        </div>
+                                        <button className="w-full bg-surface-container-high text-on-surface px-6 py-3 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-surface-container-highest transition-colors">
+                                            Check In
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Padel */}
+                            <div onClick={() => navigate('/event-padel')} className="cursor-pointer md:col-span-5 bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm flex flex-col">
+                                <div className="p-6 bg-secondary-container/30 border-b border-outline-variant/10">
+                                    <span className="text-secondary font-black uppercase tracking-[0.2em] text-[10px]">Matchmaking</span>
+                                </div>
+                                <div className="p-6 flex-1 flex flex-col">
+                                    <h3 className="text-2xl font-extrabold tracking-tight mb-2 leading-tight">Padel Partners: Deggendorf Open</h3>
+                                    <p className="text-on-surface-variant text-sm mb-6 leading-relaxed">Looking for two intermediate players to complete a doubles session.</p>
+                                    <div className="bg-surface-container-low p-4 rounded-xl mb-6 flex items-center gap-4">
+                                        <img className="w-12 h-12 rounded-full object-cover" src="https://i.pravatar.cc/150?u=marco" />
+                                        <div>
+                                            <div className="font-bold text-on-surface text-sm">Hosted by Marco</div>
+                                            <div className="text-xs text-on-surface-variant">Rating: 4.8 • 12 Games</div>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-3 mt-auto">
+                                        <div className="flex items-center gap-3 text-sm font-semibold text-primary">
+                                            <span className="material-symbols-outlined text-lg">schedule</span>
+                                            Tomorrow • 10:00 AM
+                                        </div>
+                                        <button className="w-full bg-primary text-white py-4 rounded-xl font-bold uppercase tracking-widest text-xs mt-4 shadow-lg shadow-primary/20">
+                                            Apply to Play
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                    <BottomNav />
+                </div>
+            );
+        };
+
+        const PadelDetailsScreen = () => {
+            const navigate = useNavigate();
+            return (
+                <div className="min-h-screen bg-background">
+                    <header className="bg-violet-50/70 backdrop-blur-xl fixed top-0 w-full z-50 flex items-center justify-between px-6 py-4">
+                        <div className="flex items-center gap-4">
+                            <button onClick={() => navigate(-1)} className="text-indigo-600 hover:opacity-80 transition-opacity active:scale-95">
+                                <span className="material-symbols-outlined">arrow_back</span>
+                            </button>
+                            <h1 className="font-headline font-bold tracking-tight text-indigo-700">Deg Connect</h1>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <button className="p-2 text-indigo-600"><span className="material-symbols-outlined">share</span></button>
+                            <button className="p-2 text-indigo-600"><span className="material-symbols-outlined">favorite</span></button>
+                        </div>
+                    </header>
+                    <main className="pb-32 pt-0">
+                        <section className="relative h-[397px] w-full overflow-hidden">
+                            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10"></div>
+                            <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRY-hQSJnAUNuMssxkgAWNqvH9b7gjq5M9HcVUZ9JUcumbnw2RtL_9fnRiuL80D6xhXgXhnsSyz8b9sM4cHhdU3jo_F3YS3CZyqvmwLjeeMpzOzJj2zJxn5rj0n_WYxqZcBnHGI1W0Sa50IIkmr2aA37yy7PDFrL7ReK9P8UcgjV23x_cd5XNR2nyzyV-LArVYYZNlc9Qm7QGoKmxtP0BwUYWJCslPZAbVxah17A9qyaCeIR8e4iu4eLSv5qWxiA3oLO1qvJe4tLo"/>
+                            <div className="absolute bottom-8 left-6 right-6 z-20">
+                                <div className="flex items-center gap-2 mb-3">
+                                    <span className="px-3 py-1 bg-tertiary-container text-on-tertiary-container rounded-sm text-[10px] font-bold uppercase tracking-widest">Active Match</span>
+                                    <span className="px-3 py-1 bg-primary text-on-primary rounded-sm text-[10px] font-bold uppercase tracking-widest">Intermediate</span>
+                                </div>
+                                <h2 className="font-headline text-4xl font-extrabold tracking-tighter text-on-surface leading-none mb-2">Padel Partners: Deggendorf Open</h2>
+                            </div>
+                        </section>
+                        <div className="px-6 space-y-8 -mt-4 relative z-30">
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="bg-surface-container-low p-5 rounded-xl flex flex-col justify-between h-32">
+                                    <span className="material-symbols-outlined text-primary mb-auto">calendar_today</span>
+                                    <div>
+                                        <p className="text-xs text-on-surface-variant font-semibold uppercase tracking-wider">Date & Time</p>
+                                        <p className="font-headline font-bold text-lg text-on-surface">Tomorrow • 10:00 AM</p>
+                                    </div>
+                                </div>
+                                <div className="bg-surface-container-low p-5 rounded-xl flex flex-col justify-between h-32">
+                                    <span className="material-symbols-outlined text-primary mb-auto">location_on</span>
+                                    <div>
+                                        <p className="text-xs text-on-surface-variant font-semibold uppercase tracking-wider">Venue</p>
+                                        <p className="font-headline font-bold text-lg text-on-surface">Sports Arena Deggendorf</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex items-center justify-between bg-surface-container-lowest p-6 rounded-xl shadow-sm">
+                                <div className="flex items-center gap-4">
+                                    <img className="w-16 h-16 rounded-full object-cover border-2 border-primary-container" src="https://i.pravatar.cc/150?u=marco" />
+                                    <div>
+                                        <p className="text-xs text-on-surface-variant font-medium">Hosted by</p>
+                                        <h3 className="font-headline font-bold text-xl text-on-surface leading-tight">Marco</h3>
+                                        <div className="flex items-center gap-1 mt-1">
+                                            <span className="material-symbols-outlined text-tertiary text-sm" style={{fontVariationSettings: "'FILL' 1"}}>star</span>
+                                            <span className="text-sm font-bold text-on-surface">4.8</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button className="bg-surface-container-high text-on-surface px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide">View Profile</button>
+                            </div>
+                            <div className="space-y-4">
+                                <h4 className="font-headline font-extrabold text-2xl tracking-tight">The Mission</h4>
+                                <p className="text-on-surface-variant leading-relaxed text-lg">
+                                    Looking for <span className="text-primary font-semibold">two intermediate players</span> to join us for a high-energy doubles session.
+                                </p>
+                            </div>
+                        </div>
+                    </main>
+                    <div className="fixed bottom-0 left-0 w-full px-6 pb-10 pt-6 bg-gradient-to-t from-background via-background to-transparent z-40">
+                        <button className="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-bold text-lg py-5 rounded-full shadow-xl active:scale-95 transition-transform uppercase tracking-widest">
+                            Apply to Play
+                        </button>
+                    </div>
+                </div>
+            );
+        };
+
+        const NeonDetailsScreen = () => {
+            const navigate = useNavigate();
+            return (
+                <div className="min-h-screen bg-background">
+                    <nav className="fixed top-0 w-full z-50 flex items-center justify-between px-6 py-4 glass-header">
+                        <div className="flex items-center gap-4">
+                            <button onClick={() => navigate(-1)} className="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-lowest text-primary">
+                                <span className="material-symbols-outlined">arrow_back</span>
+                            </button>
+                            <span className="font-headline font-bold tracking-tight text-indigo-700">Deg Connect</span>
+                        </div>
+                        <button className="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-lowest text-on-surface">
+                            <span className="material-symbols-outlined">share</span>
+                        </button>
+                    </nav>
+                    <main className="pb-32">
+                        <section className="relative h-[530px] w-full overflow-hidden asymmetric-clip">
+                            <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5mNVYutYm17YNxnTxsz_x6rLlvX6lExaOqSjZvwLuiNv6hefItVIcxJprhD3gYsi8zaZXVHIPaVik6TQwipyYeaBOa8z2l0lgTx9oo3PjupQJcbQfOg7IukxkLzamNFyxkdkmjj042Z0zxplqHRhiLGIdPygHE-bOBXqrxqWM5bcE30-s0IYHJ9aDX_8sWKeECF13iSxPySAFk0_fPb-uyfG1oJNzpulpSB3rTowTEo2Jrkj07WaKOMb-3mUANcQAQw-mowbSsbQ"/>
+                            <div className="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-transparent to-transparent"></div>
+                            <div className="absolute bottom-16 left-6 right-6">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tertiary-container/90 text-on-tertiary-container mb-4">
+                                    <span className="material-symbols-outlined text-[14px]" style={{fontVariationSettings: "'FILL' 1"}}>auto_awesome</span>
+                                    <span className="font-label text-[10px] font-bold uppercase tracking-widest">Trending Now</span>
+                                </div>
+                                <h1 className="font-headline text-4xl font-extrabold text-white leading-tight">Neon Sip: <br/>Secret Menu Night</h1>
+                            </div>
+                        </section>
+                        <div className="px-6 -mt-8 relative z-10 space-y-8">
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="bg-surface-container-lowest p-5 rounded-xl shadow-sm">
+                                    <span className="material-symbols-outlined text-primary mb-3">calendar_today</span>
+                                    <p className="font-headline font-bold text-on-surface text-lg">Tonight, 9:00 PM</p>
+                                </div>
+                                <div className="bg-surface-container-lowest p-5 rounded-xl shadow-sm">
+                                    <span className="material-symbols-outlined text-tertiary mb-3">location_on</span>
+                                    <p className="font-headline font-bold text-on-surface text-lg">The Velvet Lounge</p>
+                                </div>
+                            </div>
+                            <div className="space-y-4">
+                                <h2 className="font-headline text-2xl font-bold text-on-surface">About the Vibe</h2>
+                                <p className="text-on-surface-variant leading-relaxed text-lg">Step into a world where mixology meets mystery. Our lead alchemist has crafted a secret experimental menu.</p>
+                            </div>
+                            <div className="bg-surface-container-low p-6 rounded-2xl flex items-center justify-between">
+                                <div className="flex -space-x-3">
+                                    {[1,2,3].map(i => <img key={i} className="w-10 h-10 rounded-full border-2 border-surface-container-low" src={`https://i.pravatar.cc/150?u=neon${i}`} />)}
+                                    <div className="w-10 h-10 rounded-full border-2 border-surface-container-low bg-primary text-white flex items-center justify-center text-xs font-bold">+42</div>
+                                </div>
+                                <p className="font-label text-sm font-semibold text-primary">Joining the scene</p>
+                            </div>
+                        </div>
+                    </main>
+                    <div className="fixed bottom-0 left-0 w-full px-6 pb-8 pt-4 glass-header z-50">
+                        <button className="w-full px-10 py-4 rounded-full bg-gradient-to-br from-primary to-primary-container text-white font-headline font-bold text-lg shadow-xl">Join Vibe</button>
+                    </div>
+                </div>
+            );
+        };
+
+        const BasketballDetailsScreen = () => {
+            const navigate = useNavigate();
+            return (
+                <div className="min-h-screen bg-background">
+                    <header className="fixed top-0 w-full z-50 bg-violet-50/70 backdrop-blur-xl flex items-center justify-between px-6 py-4">
+                        <button onClick={() => navigate(-1)} className="text-indigo-600"><span className="material-symbols-outlined">arrow_back</span></button>
+                        <h1 className="text-xl font-black text-indigo-700 font-headline">Deg Connect</h1>
+                        <button className="text-indigo-600"><span className="material-symbols-outlined">share</span></button>
+                    </header>
+                    <main className="pt-16 pb-32">
+                        <section className="relative w-full h-[397px] overflow-hidden">
+                            <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjQGzEGNTdcGx35TWzp6Lw3RZNFL1UpygdEwzcauWxF-KhDB6MdPqpLmJSJtI78KNzyVkS91H70dlU6V2dN6Q6sphZU7Qf5vM-gO4Xs22HYR1DRexNiWjZJ57vm2hk5lvPmpJZ4jyDFVR1eU9SXmwXVANT-IC_2tN5FGy4fmWxYjTBcI-1j2bM5F1M7Q9Wgah6RcoJ3GRBD28yxmbBhuVaerYb3WmmVqSM5umB3YnQwTdfcc2G34UJceWh9MXrnMCg0hUNPuyz49w"/>
+                            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
+                            <div className="absolute bottom-8 left-6">
+                                <div className="flex items-center gap-2 bg-tertiary-container/90 px-3 py-1 rounded-full text-on-tertiary-container text-[10px] font-bold uppercase tracking-widest animate-pulse">
+                                    <span className="w-2 h-2 rounded-full bg-tertiary"></span> Live Now
+                                </div>
+                            </div>
+                        </section>
+                        <div className="px-6 -mt-12 relative z-10">
+                            <div className="bg-surface-container-lowest rounded-[2rem] p-8 shadow-sm">
+                                <span className="text-primary font-semibold text-sm tracking-wide font-headline">Started 15m ago</span>
+                                <h2 className="text-4xl font-extrabold font-headline leading-tight tracking-tighter text-on-surface mb-6">Full Court Pick-up @ Central</h2>
+                                <div className="flex flex-wrap gap-4 items-center mb-8">
+                                    <div className="flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-xl">
+                                        <span className="material-symbols-outlined text-primary">location_on</span>
+                                        <span className="font-bold text-on-surface-variant">Central Park</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-xl">
+                                        <span className="material-symbols-outlined text-tertiary">groups</span>
+                                        <span className="font-bold text-on-surface-variant">12 / 15 Players</span>
+                                    </div>
+                                </div>
+                                <div className="bg-surface-container-low rounded-2xl p-6">
+                                    <h3 className="font-headline font-bold text-lg text-primary mb-3">The Vibe</h3>
+                                    <p className="text-on-surface-variant leading-relaxed font-medium">Join us for a friendly high-energy game. We're running full court sets, 5-on-5.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </main>
+                    <div className="fixed bottom-28 right-6 z-[60]">
+                        <button className="bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 rounded-full shadow-2xl font-headline font-extrabold text-sm uppercase tracking-widest flex items-center gap-3">
+                            <span className="material-symbols-outlined">check_circle</span> Check In
+                        </button>
+                    </div>
+                </div>
+            );
+        };
+
+        const ProfileScreen = () => {
+            return (
+                <div className="min-h-screen pb-32">
+                    <TopAppBar title="Profile" />
+                    <main className="pt-20 px-6 max-w-2xl mx-auto space-y-8">
+                        <section className="flex flex-col items-center text-center space-y-4 py-6">
+                            <div className="relative group">
+                                <img className="w-32 h-32 rounded-full object-cover border-4 border-surface-container-lowest relative z-10" src="https://i.pravatar.cc/300?u=marco" />
+                                <button className="absolute bottom-1 right-1 bg-primary text-white p-2 rounded-full z-20 shadow-lg"><span className="material-symbols-outlined text-sm">edit</span></button>
+                            </div>
+                            <div>
+                                <h2 className="headline-font text-3xl font-extrabold tracking-tight text-on-surface">Marco</h2>
+                                <p className="text-on-surface-variant max-w-xs mx-auto text-sm">Connecting dots and people in Lower Bavaria.</p>
+                            </div>
+                        </section>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="bg-surface-container-low p-5 rounded-xl flex flex-col items-center">
+                                <span className="headline-font text-2xl font-black text-primary">12</span>
+                                <span className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Events</span>
+                            </div>
+                            <div className="bg-surface-container-low p-5 rounded-xl flex flex-col items-center">
+                                <span className="headline-font text-2xl font-black text-tertiary">42</span>
+                                <span className="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Connections</span>
+                            </div>
+                        </div>
+                        <section className="space-y-4">
+                            <h3 className="headline-font text-lg font-bold">Interests</h3>
+                            <div className="flex flex-wrap gap-2">
+                                {['Basketball', 'Mixology', 'Padel', 'Live Music', 'Networking'].map((tag, idx) => (
+                                    <span key={idx} className={`${idx < 3 ? 'bg-primary text-white' : 'bg-surface-container text-on-surface'} px-4 py-2 rounded-full text-sm font-semibold`}>{tag}</span>
+                                ))}
+                            </div>
+                        </section>
+                    </main>
+                    <BottomNav />
+                </div>
+            );
+        };
+
+        const CreateScreen = () => {
+            const navigate = useNavigate();
+            return (
+                <div className="min-h-screen pb-32">
+                    <header className="fixed top-0 w-full z-50 bg-violet-50/70 backdrop-blur-xl flex items-center justify-between px-6 h-16">
+                        <div className="flex items-center gap-4">
+                            <button onClick={() => navigate(-1)} className="text-indigo-600"><span className="material-symbols-outlined">close</span></button>
+                            <h1 className="font-headline font-bold text-indigo-700 text-xl">Create Event</h1>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <span className="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span>
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-tertiary headline-font">Draft</span>
+                        </div>
+                    </header>
+                    <main className="pt-24 px-6 max-w-2xl mx-auto space-y-10">
+                        <section className="aspect-[16/9] w-full rounded-xl overflow-hidden bg-surface-container relative">
+                            <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtZHLup69LYk9QepWPPF7zeXnDeK2UYGvvrZoexKNyHNfhwhgE6YKPbQv0eQJF4V5r1yTVMCeho3YLdftNwRZCnol_ZfD-nUN00Db2WXDM4qRRtR_ZA6Hm0RTOPejU44-JvXBWG-fX_F5P2HeFzP3GD8VFSgKjZuzradISdVqluS4rRA4Qjaw29RJDzfxPvz_rDAQU6uUXNg-y7bMBnesAxQTD2j4pFTEeFun1lA0Y1lzgsvf8Mb5-Aql3ansDtHI6q-xI6_PU9Og" />
+                            <button className="absolute bottom-4 right-4 bg-surface-container-lowest/20 backdrop-blur-md text-white px-4 py-2 rounded-full flex items-center gap-2 font-bold text-sm">
+                                <span className="material-symbols-outlined text-sm">add_a_photo</span> Add Photo
+                            </button>
+                        </section>
+                        <div className="space-y-8">
+                            <div>
+                                <label className="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2">Event Title</label>
+                                <input className="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 text-2xl font-bold text-on-surface py-4" placeholder="e.g., 'Sunset Yoga'" type="text"/>
+                            </div>
+                            <div className="grid grid-cols-2 gap-6">
+                                <div className="bg-surface-container-low p-4 rounded-xl">
+                                    <p className="text-[10px] font-bold uppercase text-outline">Date</p>
+                                    <input className="bg-transparent border-0 p-0 focus:ring-0 font-bold text-on-surface" type="date" />
+                                </div>
+                                <div className="bg-surface-container-low p-4 rounded-xl">
+                                    <p className="text-[10px] font-bold uppercase text-outline">Time</p>
+                                    <input className="bg-transparent border-0 p-0 focus:ring-0 font-bold text-on-surface" type="time" />
+                                </div>
+                            </div>
+                            <button className="w-full bg-gradient-to-br from-primary to-primary-container text-white py-5 rounded-full font-extrabold text-lg uppercase tracking-widest shadow-lg">Host Vibe</button>
+                        </div>
+                    </main>
+                    <BottomNav />
+                </div>
+            );
+        };
+
+        // --- App Entry ---
+
+        const App = () => {
+            return (
+                <MemoryRouter>
+                    <Routes>
+                        <Route path="/" element={<FeedScreen />} />
+                        <Route path="/event-padel" element={<PadelDetailsScreen />} />
+                        <Route path="/event-neon" element={<NeonDetailsScreen />} />
+                        <Route path="/event-basketball" element={<BasketballDetailsScreen />} />
+                        <Route path="/profile" element={<ProfileScreen />} />
+                        <Route path="/create" element={<CreateScreen />} />
+                        <Route path="/explore" element={<FeedScreen />} /> {/* Reuse feed for explore demo */}
+                    </Routes>
+                </MemoryRouter>
+            );
+        };
+
+        const root = createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

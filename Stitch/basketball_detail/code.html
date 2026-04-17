@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#ece4ff",
+                    "on-surface": "#312950",
+                    "inverse-surface": "#0f072d",
+                    "error-container": "#f74b6d",
+                    "inverse-on-surface": "#a197c5",
+                    "on-tertiary-fixed": "#350026",
+                    "tertiary-fixed-dim": "#ec7ec0",
+                    "on-secondary-container": "#4b349d",
+                    "tertiary-container": "#fc8bce",
+                    "primary": "#4441e3",
+                    "on-error-container": "#510017",
+                    "on-primary-fixed-variant": "#13009c",
+                    "on-error": "#ffefef",
+                    "on-surface-variant": "#5e5680",
+                    "on-primary": "#f4f1ff",
+                    "background": "#faf4ff",
+                    "tertiary": "#973775",
+                    "surface-container-highest": "#e1d7ff",
+                    "primary-container": "#9596ff",
+                    "on-secondary-fixed-variant": "#553ea7",
+                    "error-dim": "#a70138",
+                    "outline-variant": "#b1a7d6",
+                    "on-background": "#312950",
+                    "on-secondary": "#f6f0ff",
+                    "primary-fixed": "#9596ff",
+                    "on-tertiary-container": "#600247",
+                    "secondary-container": "#d6cbff",
+                    "surface-dim": "#d9ceff",
+                    "tertiary-fixed": "#fc8bce",
+                    "surface-variant": "#e1d7ff",
+                    "tertiary-dim": "#882a68",
+                    "surface-bright": "#faf4ff",
+                    "surface-tint": "#4441e3",
+                    "on-primary-fixed": "#000000",
+                    "primary-dim": "#3731d7",
+                    "secondary-fixed": "#d6cbff",
+                    "secondary-fixed-dim": "#c9bbff",
+                    "outline": "#7a719d",
+                    "secondary": "#604ab3",
+                    "surface": "#faf4ff",
+                    "error": "#b41340",
+                    "on-primary-container": "#0d0080",
+                    "inverse-primary": "#8283ff",
+                    "primary-fixed-dim": "#8586ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#381c89",
+                    "on-tertiary-fixed-variant": "#6c1050",
+                    "surface-container-high": "#e7deff",
+                    "on-tertiary": "#ffeef4",
+                    "surface-container-low": "#f5eeff",
+                    "secondary-dim": "#543da6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Be Vietnam Pro"],
+                    "label": ["Be Vietnam Pro"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body selection:bg-primary-container/30">
+<!-- Top AppBar -->
+<header class="fixed top-0 w-full z-50 bg-violet-50/70 dark:bg-slate-950/70 backdrop-blur-xl">
+<div class="flex items-center justify-between px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<button class="text-indigo-600 dark:text-indigo-400 hover:opacity-80 transition-opacity active:scale-95 active:duration-150">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-xl font-black text-indigo-700 dark:text-indigo-300 font-headline tracking-tight">Deg Connect</h1>
+</div>
+<button class="text-indigo-600 dark:text-indigo-400 hover:opacity-80 transition-opacity active:scale-95">
+<span class="material-symbols-outlined">share</span>
+</button>
+</div>
+</header>
+<main class="pt-16 pb-32">
+<!-- Hero Section with Asymmetric Layout -->
+<section class="relative w-full h-[397px] overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Cinematic wide shot of an urban outdoor basketball court at dusk, vibrant orange sky, bright stadium lights glowing against deep blue twilight, gritty textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjQGzEGNTdcGx35TWzp6Lw3RZNFL1UpygdEwzcauWxF-KhDB6MdPqpLmJSJtI78KNzyVkS91H70dlU6V2dN6Q6sphZU7Qf5vM-gO4Xs22HYR1DRexNiWjZJ57vm2hk5lvPmpJZ4jyDFVR1eU9SXmwXVANT-IC_2tN5FGy4fmWxYjTBcI-1j2bM5F1M7Q9Wgah6RcoJ3GRBD28yxmbBhuVaerYb3WmmVqSM5umB3YnQwTdfcc2G34UJceWh9MXrnMCg0hUNPuyz49w"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
+<!-- Live Indicator Overlay -->
+<div class="absolute bottom-8 left-6">
+<div class="flex items-center gap-2 bg-tertiary-container/90 backdrop-blur-md px-3 py-1 rounded-full text-on-tertiary-container text-[10px] font-bold uppercase tracking-widest animate-pulse">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+                    Live Now
+                </div>
+</div>
+</section>
+<!-- Editorial Content Canvas -->
+<div class="px-6 -mt-12 relative z-10">
+<!-- Header Card -->
+<div class="bg-surface-container-lowest rounded-[2rem] p-8 shadow-sm">
+<div class="flex flex-col gap-2 mb-6">
+<span class="text-primary font-semibold text-sm tracking-wide font-headline">Started 15m ago</span>
+<h2 class="text-4xl font-extrabold font-headline leading-tight tracking-tighter text-on-surface">
+                        Full Court Pick-up @ Central
+                    </h2>
+</div>
+<div class="flex flex-wrap gap-4 items-center mb-8">
+<div class="flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-xl">
+<span class="material-symbols-outlined text-primary text-xl">location_on</span>
+<span class="font-bold text-on-surface-variant">Central Park Courts</span>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-xl">
+<span class="material-symbols-outlined text-tertiary text-xl">groups</span>
+<span class="font-bold text-on-surface-variant">12 / 15 Players</span>
+</div>
+</div>
+<!-- Bento Style Detail Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- Description -->
+<div class="bg-surface-container-low rounded-2xl p-6 flex flex-col gap-3">
+<h3 class="font-headline font-bold text-lg text-primary">The Vibe</h3>
+<p class="text-on-surface-variant leading-relaxed font-medium">
+                            Join us for a friendly high-energy game. We're running full court sets, 5-on-5, winners stay on. All skill levels welcome but expect a competitive pace. Bringing the heat at dusk!
+                        </p>
+</div>
+<!-- Player Roster -->
+<div class="bg-surface-container-low rounded-2xl p-6">
+<div class="flex justify-between items-center mb-4">
+<h3 class="font-headline font-bold text-lg text-primary">On Court</h3>
+<span class="text-xs font-bold text-tertiary uppercase tracking-widest">Active</span>
+</div>
+<div class="flex flex-wrap gap-3">
+<!-- Avatars -->
+<div class="w-10 h-10 rounded-full ring-2 ring-surface-container-lowest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close-up portrait of a young athletic man smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJ72-GRmI1pBjmwFdtekfDQQcP74vxl4ENgM5X7H3IeyW3hAKwR7M0XC74mYct7N0sdTpyRe2B3yHMPqYEi8JTnV2m_lp5_HYKg4e90r1mP96F8TEcODZjd2Hz_YF8FZh3Gi2nNy6-trsWw22G5X1ihFLmInuVqVJO3ZLEuJycu5_iRIqSf05kWtnHi3nIK3Kz0wnUh8aFtrOCk5GpBye8-vytDdKKdJoG_8zr_KoOAXuIkfAhHDIv0efQsNb0CjCtFWFZDsMOJU0"/>
+</div>
+<div class="w-10 h-10 rounded-full ring-2 ring-surface-container-lowest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Profile of a male basketball player in sunlight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARFuAz5kWqCBxhEdUHEwWY39UyvdYsOMZ0DULSY8hy7k7wq9WYYNGIZuktN8OxMtKvvdcZbNyPdcaKjdO9E4lXXhplyynOhZFfXrMr1_82J6rcrRM7Riq_FSyG_fIEMZjp3bOqOSczaPKK9frDIxdySnogCvC9dkyso3u-x41HdirI1DfEZeQ4lDQ4yX9OPUcepqsQAfNUWStm2VvkXuXiq6GvxvHbsTl1B0WEIFs5imMg-m9PFyTPVtJwTYtSif7rYlC00ThjV18"/>
+</div>
+<div class="w-10 h-10 rounded-full ring-2 ring-surface-container-lowest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Young woman with curly hair looking energetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRMckL9O9cwWNaGYaViEb0XLeLd8nSdER3ci1Nu_S2WszHyXWyVwi7SOFIA199vnvaqFbZb5Mzbrd4HjOxyYqc-sEvpZAL8QUGSvK-OibWJTSGFSbdevBLnIAoi0mAv677aMtcW0sVr3mQxjgGC7eV-2TAvJR8rlTg6-eE_M1zSLh3t8pMFoTx3dtmxg4jiyUjKRF5CyPDti-fDthmh4disUGcLec8U8vEYx8F5LQzTrDiJroTZ7KqNAJO9El84i_J0vuhnkoMZBQ"/>
+</div>
+<div class="w-10 h-10 rounded-full ring-2 ring-surface-container-lowest overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Portrait of an athletic woman in sporty gear" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeJu0l--maIgxWAI_7G-YiJpRcFfb6Kr7Up8q1L10lRW8gd6TbEdiHGEvYWeVSABezr9gId46Tx9UUwTdv-kqZmNM_oD3lJ109f2qe5077BnQvvLWZuFvZ_5k-zGzmGmQSclA9rMP-Y4xUJM5VOhmZLFjVcKzmLXKXrWC85TXixGx_IIC52XjWwzzgNp6ktYL50P2Frm4cUebvHpgKnjdmGwMegJZ1kLK9gu_nI46EPsBSub5FZcwka7SnBPoo-AiqOlH43jtL39c"/>
+</div>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-white text-xs font-bold ring-2 ring-surface-container-lowest">
+                                +8
+                            </div>
+</div>
+</div>
+</div>
+</div>
+<!-- Location Preview (Glassmorphism) -->
+<div class="mt-6 bg-surface-container-low rounded-[2rem] overflow-hidden relative h-48 group">
+<img class="w-full h-full object-cover grayscale opacity-40 group-hover:grayscale-0 transition-all duration-700" data-alt="Abstract aerial map view of an urban park with basketball courts and walking paths" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMohKk5S7oyG7r81U9FsbFAZAwL5TxFLdnFieHj9wonwk44kCiOGBTETUBwl7_aX8bbZeEEZvkwUvSYFVu1WuiWt1Y_Rk6DKbHlITK5Bc056oatgE0fnkd80LkZaRTGgJROb_Y8LjlynP7bhbgyAGXWGtUGug2VC30DoMrr2xD7uO8yhWovHYzTUhPgXa4fgdKh9k5kRMzRXjDjZ7eNPPXfJYC8qFErDhPGoWNbvOL81fhSghh6W1M5M6jhtzLFwFYq-Q9nWpPAxk"/>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-6 bg-primary/10 backdrop-blur-sm">
+<span class="material-symbols-outlined text-4xl text-primary mb-2">map</span>
+<p class="font-headline font-extrabold text-on-surface">View Court Access</p>
+<p class="text-sm font-medium text-on-surface-variant">Central Park West Side</p>
+</div>
+<div class="hidden" data-location="New York City" style=""></div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Shell (Persistent) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-2 bg-violet-50/80 dark:bg-slate-950/80 backdrop-blur-2xl rounded-t-[2rem] shadow-[0_-4px_24px_0_rgba(49,41,80,0.06)] z-50">
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 p-3 hover:text-indigo-500 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">explore</span>
+<span class="font-be-vietnam-pro text-[10px] font-semibold uppercase tracking-wider mt-1">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-gradient-to-br from-indigo-600 to-violet-400 text-white rounded-2xl p-3 shadow-lg shadow-indigo-500/20" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-be-vietnam-pro text-[10px] font-semibold uppercase tracking-wider mt-1">My Vibes</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 p-3 hover:text-indigo-500 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">chat_bubble</span>
+<span class="font-be-vietnam-pro text-[10px] font-semibold uppercase tracking-wider mt-1">Inbox</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-500 dark:text-slate-400 p-3 hover:text-indigo-500 transition-all duration-300" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-be-vietnam-pro text-[10px] font-semibold uppercase tracking-wider mt-1">Profile</span>
+</a>
+</nav>
+<!-- Floating Action Button: Primary Interaction -->
+<div class="fixed bottom-28 right-6 z-[60]">
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-8 py-4 rounded-full shadow-2xl shadow-primary/40 font-headline font-extrabold text-sm uppercase tracking-widest flex items-center gap-3 active:scale-95 transition-transform">
+<span class="material-symbols-outlined">check_circle</span>
+            Check In
+        </button>
+</div>
+</body></html>

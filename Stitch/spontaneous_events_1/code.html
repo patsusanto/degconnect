@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#d6cbff",
+                    "on-tertiary": "#ffeef4",
+                    "on-primary-fixed": "#000000",
+                    "tertiary": "#973775",
+                    "tertiary-fixed": "#fc8bce",
+                    "error-container": "#f74b6d",
+                    "on-secondary-fixed-variant": "#553ea7",
+                    "error-dim": "#a70138",
+                    "primary-container": "#9596ff",
+                    "on-tertiary-fixed": "#350026",
+                    "primary": "#4441e3",
+                    "primary-fixed": "#9596ff",
+                    "on-primary-container": "#0d0080",
+                    "secondary-fixed-dim": "#c9bbff",
+                    "secondary-fixed": "#d6cbff",
+                    "on-secondary-fixed": "#381c89",
+                    "on-tertiary-container": "#600247",
+                    "background": "#faf4ff",
+                    "primary-dim": "#3731d7",
+                    "on-background": "#312950",
+                    "inverse-on-surface": "#a197c5",
+                    "tertiary-fixed-dim": "#ec7ec0",
+                    "on-surface": "#312950",
+                    "primary-fixed-dim": "#8586ff",
+                    "inverse-primary": "#8283ff",
+                    "inverse-surface": "#0f072d",
+                    "tertiary-container": "#fc8bce",
+                    "surface-container-lowest": "#ffffff",
+                    "on-error-container": "#510017",
+                    "surface-container": "#ece4ff",
+                    "on-secondary-container": "#4b349d",
+                    "surface-bright": "#faf4ff",
+                    "on-error": "#ffefef",
+                    "on-secondary": "#f6f0ff",
+                    "surface-dim": "#d9ceff",
+                    "surface-container-low": "#f5eeff",
+                    "secondary": "#604ab3",
+                    "surface-container-high": "#e7deff",
+                    "outline-variant": "#b1a7d6",
+                    "error": "#b41340",
+                    "on-tertiary-fixed-variant": "#6c1050",
+                    "on-surface-variant": "#5e5680",
+                    "surface-variant": "#e1d7ff",
+                    "tertiary-dim": "#882a68",
+                    "surface-container-highest": "#e1d7ff",
+                    "secondary-dim": "#543da6",
+                    "surface": "#faf4ff",
+                    "outline": "#7a719d",
+                    "on-primary-fixed-variant": "#13009c",
+                    "on-primary": "#f4f1ff",
+                    "surface-tint": "#4441e3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Be Vietnam Pro"],
+                    "label": ["Be Vietnam Pro"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+        h1, h2, h3 { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="bg-[#faf4ff]/80 dark:bg-[#1a1625]/80 backdrop-blur-md fixed top-0 w-full z-50 flex justify-between items-center px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-transform text-[#4441e3] dark:text-[#9596ff]">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<span class="font-['Plus_Jakarta_Sans'] font-extrabold tracking-tight text-2xl font-black text-[#4441e3] dark:text-[#9596ff] italic">VibeCheck</span>
+</div>
+<div class="active:scale-95 transition-transform cursor-pointer">
+<img alt="User Profile" class="w-10 h-10 rounded-full border-2 border-primary" data-alt="close up portrait of a stylish young man with glasses and a friendly smile in soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7DnAa0-7IxgzW4c3t4uo97c_Ic_cjT9wtkagSoxBmI30hABFpob475buIY6h79L-7lSNeXwyETBXbbczL6tlx2Um3Cwi5M4BUZVDyaOTpiwfrv4I0EBwKn2ap6jnQwT5Go_BJxmO4LQIlZnmd3WnwIBro1SHFEEkgC_ltEtzv4mCFKh3ad3UJH9Hv3jVS5RnvaC0whD4W2-SFE43IryxHF0KYDsos0L68uv48OKjP4Jx3oQ81CDS2BVGzH5mxT2T6AHGskSYiFqM"/>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-4xl mx-auto">
+<!-- Hero Section -->
+<section class="mb-10">
+<h1 class="text-5xl font-black tracking-tighter text-on-surface mb-2 leading-none">Spontaneous Vibes</h1>
+<p class="text-on-surface-variant text-lg">Happenings right now in your orbit.</p>
+</section>
+<!-- Category Chips -->
+<div class="flex gap-3 mb-8 overflow-x-auto pb-2 scrollbar-hide">
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="auto_awesome">auto_awesome</span>
+                All
+            </button>
+<button class="bg-surface-container-low text-on-surface-variant px-6 py-2 rounded-sm text-sm font-bold uppercase tracking-wider flex items-center gap-2 border border-transparent hover:bg-surface-container">
+<span class="material-symbols-outlined text-sm" data-icon="nightlife">nightlife</span>
+                Nightlife
+            </button>
+<button class="bg-surface-container-low text-on-surface-variant px-6 py-2 rounded-sm text-sm font-bold uppercase tracking-wider flex items-center gap-2 border border-transparent hover:bg-surface-container">
+<span class="material-symbols-outlined text-sm" data-icon="sports_basketball">sports_basketball</span>
+                Sports
+            </button>
+<button class="bg-surface-container-low text-on-surface-variant px-6 py-2 rounded-sm text-sm font-bold uppercase tracking-wider flex items-center gap-2 border border-transparent hover:bg-surface-container">
+<span class="material-symbols-outlined text-sm" data-icon="diversity_3">diversity_3</span>
+                Matchmaking
+            </button>
+</div>
+<!-- Event Bento Feed -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Event 1: Cocktail Night (Wide Hero) -->
+<div class="md:col-span-12 bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm group">
+<div class="relative h-80 overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="atmospheric neon lit bar scene with glowing purple and blue lights vibrant cocktails on a dark reflective counter with smoke effects" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-5t3Dwhmo6oFoWilN2lzFjLJdVOMUzamolLoASm-EZziUIrGkqOSSOXL_NmZgHDzX0Mxpko90oAx8_VliE-tKPqcPyavHumT28u5LOy962an-rTFy_y6zn3ypKfQXHgi9P6dJV3M6z5JakkOpPTzMgtMrJX-geM-jaivEnYRIF8eiJB4ITw49N9Ql71NQMITrwNLb2l09VaMQyu-1hDulQy8Blt7uwfYQKULXzRSeHOlulPlwzhHkA6R_JpWxaZGBq5srdDSskGY"/>
+<div class="absolute top-4 right-4 flex gap-2">
+<span class="bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center gap-1 animate-pulse">
+<span class="w-2 h-2 bg-tertiary rounded-full"></span> Live
+                        </span>
+<span class="bg-black/50 backdrop-blur-md text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Nightlife</span>
+</div>
+</div>
+<div class="p-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+<div>
+<div class="text-primary font-bold uppercase tracking-[0.2em] text-xs mb-3">Today • 9:00 PM</div>
+<h2 class="text-4xl font-extrabold tracking-tight text-on-surface leading-tight mb-2">Neon Sip: Secret Menu Night</h2>
+<div class="flex items-center gap-2 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm" data-icon="location_on">location_on</span>
+<span class="font-medium">The Velvet Lounge</span>
+</div>
+</div>
+<button class="w-full md:w-auto bg-gradient-to-tr from-primary to-primary-container text-white px-8 py-4 rounded-full font-bold uppercase tracking-widest text-sm hover:opacity-90 active:scale-95 transition-all">
+                        Join Vibe
+                    </button>
+</div>
+</div>
+<!-- Event 2: Basketball (Square) -->
+<div class="md:col-span-7 bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm flex flex-col">
+<div class="relative h-64">
+<img class="w-full h-full object-cover" data-alt="dynamic wide shot of an urban outdoor basketball court at twilight with blue hour lighting and bright court lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXkebfWZzHI0lkhVzhgzpDoLRHwB7F73jauvbzi0DTuCiCR2o2slyCydEfOJki2ELYfUQ8TJZ3u51ke0jWEFBUwoLYhqvGWg0Xld16bIHhmVZ85ws8I4p9uzbD4wEhGZYaPegopB5xTl_wrG_NOhTaGzxl3HSuRSMv05EEwg5izofhE9rClP9dXuQsrgm35d_LQJKCshLgiuV3x12YakCAzbWSWs1RPpqoStEIgfseITQpwsDejbFOICFpW-HmVWnpWvzlilb-aoo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-primary-container/20 backdrop-blur-md border border-white/30 text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Sports</span>
+</div>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="text-tertiary font-bold uppercase tracking-[0.2em] text-[10px] mb-2">Started 15m ago</div>
+<h3 class="text-2xl font-extrabold tracking-tight mb-4">Full Court Pick-up @ Central</h3>
+<div class="mt-auto space-y-4">
+<div class="flex -space-x-3">
+<img class="w-8 h-8 rounded-full border-2 border-surface-container-lowest" data-alt="avatar of participant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASUQozr0kLOs4s1ghDdPWSCpKs89qxJG0GPMnemW99rVXsm32LScVWBf_m7HondZzugJBdleI1klMMINgwGm8V1n95fuv6J-XpXYzrvWEb8mOQSgJ9_uBJaDbbJXK1BnTK5uFBjpNIKPOf82HPbtH4TwIvnbHEcjyen4-gPbtfAA3yVJnpic9rBuAXFt788NOQgI1z-29SPknw7MKNm6P3214HCOeaz9LYoP2wL-sAPNl2ODKFahUaMj5SqZsGcLvC29D_kxYQt7w"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface-container-lowest" data-alt="avatar of participant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB6std3JP_iRPpPZvFyWFMVVJNYkY5y70uzp4mBW7mJjzVo0s3URaF1KnbE1MJSQOS-szgpQ9Tb9XRaXuK8b9gNPYxFIQ2VZDvqR5ehpmaC0O3yhp-r_JGA3ZbaoiMPvGxwbYXx34jytYLcaFBRXJTbSjR65A-NwpA0vvPT3Orn76hFQGpjmEHjui6sFxmpH4GieoznEi7bG7UysEW9wjs4SKPqTxF1hvYKxIlov5FPC-mX0qqlRA5quQSjJRj2Y9Uy7mJ8ZiV7NZc"/>
+<img class="w-8 h-8 rounded-full border-2 border-surface-container-lowest" data-alt="avatar of participant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwE_OKcppWBshv02lW7v-NXT6dzcjCWNuw5udYlDUDbLrf9JdXWRrRL36IWqbsvwFAgTxcIhZRob1jvGOPGZ4jvj__q6d6RrU1lMFhcbmL12IywGPbubMObyoHLR9JJ5HDBZHeAQEBOF5ZaZj8_8NvSRlpcI2DW3GMfirvET5hmw1X5sNJ9QVg8uqd6J5T90ojJT7RuEKKeN8mFygLp9XVWMROZliur1EkLxAOy6ZfngOZSvutIPVcM_nSfe6G3MVh3g_6ueWWbIs"/>
+<div class="w-8 h-8 rounded-full bg-surface-container-high border-2 border-surface-container-lowest flex items-center justify-center text-[10px] font-bold">+5</div>
+</div>
+<button class="w-full bg-surface-container-high text-on-surface px-6 py-3 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-surface-container-highest transition-colors">
+                            Check In
+                        </button>
+</div>
+</div>
+</div>
+<!-- Event 3: Padel (Tall) -->
+<div class="md:col-span-5 bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm flex flex-col">
+<div class="p-6 bg-secondary-container/30 border-b border-outline-variant/10">
+<span class="text-secondary font-black uppercase tracking-[0.2em] text-[10px]">Matchmaking</span>
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<h3 class="text-2xl font-extrabold tracking-tight mb-2 leading-tight">Padel Partners: Deggendorf Open</h3>
+<p class="text-on-surface-variant text-sm mb-6 leading-relaxed">Looking for two intermediate players to complete a doubles session. High energy only!</p>
+<div class="bg-surface-container-low p-4 rounded-xl mb-6 flex items-center gap-4">
+<img class="w-12 h-12 rounded-full object-cover" data-alt="friendly looking man in sporty attire profile picture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqrOlHhdzW9d1KzTlFYmJ8Npr-LTHwd4XxWAKsGfJqRRcZQOZfnAfsvRF4I0wX5zjfMLXfLfT4GYwuxQXhQCbW45BDJtOVPsBwgXbd6px0Lpcr-KiTbolU2wzAxmF3GYCCW28JMIhRGr2bRZrwI1bAPH9Zr6fJWOo7GCDfo8bA9rOcaD5l_kDEqqAzxnOzBVIzct1tVWJrFzHZw-gIBvik6fNNZXOO3ZpPPDweQO1WwWKxE4RjWLvUXmdD059AR8_vkNH8ngZIqK0"/>
+<div>
+<div class="font-bold text-on-surface text-sm">Hosted by Marco</div>
+<div class="text-xs text-on-surface-variant">Rating: 4.8 • 12 Games</div>
+</div>
+</div>
+<div class="space-y-3 mt-auto">
+<div class="flex items-center gap-3 text-sm font-semibold text-primary">
+<span class="material-symbols-outlined text-lg" data-icon="schedule">schedule</span>
+                            Tomorrow • 10:00 AM
+                        </div>
+<div class="flex items-center gap-3 text-sm font-semibold text-on-surface-variant">
+<span class="material-symbols-outlined text-lg" data-icon="map">map</span>
+                            Sports Arena Deggendorf
+                        </div>
+<button class="w-full bg-primary text-white py-4 rounded-xl font-bold uppercase tracking-widest text-xs mt-4 shadow-lg shadow-primary/20">
+                            Apply to Play
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-3 pb-8 bg-white/90 dark:bg-[#251f35]/90 backdrop-blur-2xl rounded-t-[2rem] z-50 shadow-[0_-10px_40px_rgba(49,41,80,0.08)]">
+<a class="flex flex-col items-center justify-center bg-gradient-to-tr from-[#4441e3] to-[#9596ff] text-white rounded-2xl px-5 py-2 active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="local_fire_department" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+<span class="font-['Be_Vietnam_Pro'] text-[10px] font-bold uppercase tracking-widest mt-1">Feed</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#312950]/60 dark:text-white/60 px-5 py-2 hover:text-[#4441e3] transition-colors active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-['Be_Vietnam_Pro'] text-[10px] font-bold uppercase tracking-widest mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#312950]/60 dark:text-white/60 px-5 py-2 hover:text-[#4441e3] transition-colors active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined text-3xl" data-icon="add_circle">add_circle</span>
+<span class="font-['Be_Vietnam_Pro'] text-[10px] font-bold uppercase tracking-widest mt-1">Host</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#312950]/60 dark:text-white/60 px-5 py-2 hover:text-[#4441e3] transition-colors active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="font-['Be_Vietnam_Pro'] text-[10px] font-bold uppercase tracking-widest mt-1">Groups</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#312950]/60 dark:text-white/60 px-5 py-2 hover:text-[#4441e3] transition-colors active:scale-90 duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Be_Vietnam_Pro'] text-[10px] font-bold uppercase tracking-widest mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

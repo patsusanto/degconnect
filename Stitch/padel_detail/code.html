@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;family=Be+Vietnam+Pro:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#ece4ff",
+                    "on-surface": "#312950",
+                    "inverse-surface": "#0f072d",
+                    "error-container": "#f74b6d",
+                    "inverse-on-surface": "#a197c5",
+                    "on-tertiary-fixed": "#350026",
+                    "tertiary-fixed-dim": "#ec7ec0",
+                    "on-secondary-container": "#4b349d",
+                    "tertiary-container": "#fc8bce",
+                    "primary": "#4441e3",
+                    "on-error-container": "#510017",
+                    "on-primary-fixed-variant": "#13009c",
+                    "on-error": "#ffefef",
+                    "on-surface-variant": "#5e5680",
+                    "on-primary": "#f4f1ff",
+                    "background": "#faf4ff",
+                    "tertiary": "#973775",
+                    "surface-container-highest": "#e1d7ff",
+                    "primary-container": "#9596ff",
+                    "on-secondary-fixed-variant": "#553ea7",
+                    "error-dim": "#a70138",
+                    "outline-variant": "#b1a7d6",
+                    "on-background": "#312950",
+                    "on-secondary": "#f6f0ff",
+                    "primary-fixed": "#9596ff",
+                    "on-tertiary-container": "#600247",
+                    "secondary-container": "#d6cbff",
+                    "surface-dim": "#d9ceff",
+                    "tertiary-fixed": "#fc8bce",
+                    "surface-variant": "#e1d7ff",
+                    "tertiary-dim": "#882a68",
+                    "surface-bright": "#faf4ff",
+                    "surface-tint": "#4441e3",
+                    "on-primary-fixed": "#000000",
+                    "primary-dim": "#3731d7",
+                    "secondary-fixed": "#d6cbff",
+                    "secondary-fixed-dim": "#c9bbff",
+                    "outline": "#7a719d",
+                    "secondary": "#604ab3",
+                    "surface": "#faf4ff",
+                    "error": "#b41340",
+                    "on-primary-container": "#0d0080",
+                    "inverse-primary": "#8283ff",
+                    "primary-fixed-dim": "#8586ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#381c89",
+                    "on-tertiary-fixed-variant": "#6c1050",
+                    "surface-container-high": "#e7deff",
+                    "on-tertiary": "#ffeef4",
+                    "surface-container-low": "#f5eeff",
+                    "secondary-dim": "#543da6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "1.5rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Be Vietnam Pro"],
+                    "label": ["Be Vietnam Pro"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-surface">
+<!-- Top Navigation -->
+<header class="bg-violet-50/70 backdrop-blur-xl fixed top-0 w-full z-50 flex items-center justify-between px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<button class="text-indigo-600 hover:opacity-80 transition-opacity active:scale-95 active:duration-150">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-headline font-bold tracking-tight text-indigo-700">Deg Connect</h1>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 text-indigo-600 hover:opacity-80 transition-opacity active:scale-95">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+<button class="p-2 text-indigo-600 hover:opacity-80 transition-opacity active:scale-95">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+</div>
+</header>
+<main class="pb-32 pt-0">
+<!-- Hero Section with Asymmetric Image -->
+<section class="relative h-[397px] w-full overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10"></div>
+<img alt="Padel Court" class="w-full h-full object-cover" data-alt="Ultra-modern blue padel court with glass walls in a high-end sports facility with professional stadium lighting and vibrant atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRY-hQSJnAUNuMssxkgAWNqvH9b7gjq5M9HcVUZ9JUcumbnw2RtL_9fnRiuL80D6xhXgXhnsSyz8b9sM4cHhdU3jo_F3YS3CZyqvmwLjeeMpzOzJj2zJxn5rj0n_WYxqZcBnHGI1W0Sa50IIkmr2aA37yy7PDFrL7ReK9P8UcgjV23x_cd5XNR2nyzyV-LArVYYZNlc9Qm7QGoKmxtP0BwUYWJCslPZAbVxah17A9qyaCeIR8e4iu4eLSv5qWxiA3oLO1qvJe4tLo"/>
+<div class="absolute bottom-8 left-6 right-6 z-20">
+<div class="flex items-center gap-2 mb-3">
+<span class="px-3 py-1 bg-tertiary-container text-on-tertiary-container rounded-sm text-[10px] font-bold uppercase tracking-widest">Active Match</span>
+<span class="px-3 py-1 bg-primary text-on-primary rounded-sm text-[10px] font-bold uppercase tracking-widest">Intermediate</span>
+</div>
+<h2 class="font-headline text-4xl font-extrabold tracking-tighter text-on-surface leading-none mb-2">
+                    Padel Partners: Deggendorf Open
+                </h2>
+</div>
+</section>
+<!-- Content Shell -->
+<div class="px-6 space-y-8 -mt-4 relative z-30">
+<!-- Quick Info Bento -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-5 rounded-xl flex flex-col justify-between h-32">
+<span class="material-symbols-outlined text-primary mb-auto" data-icon="calendar_today">calendar_today</span>
+<div>
+<p class="text-xs text-on-surface-variant font-semibold uppercase tracking-wider">Date &amp; Time</p>
+<p class="font-headline font-bold text-lg text-on-surface">Tomorrow • 10:00 AM</p>
+</div>
+</div>
+<div class="bg-surface-container-low p-5 rounded-xl flex flex-col justify-between h-32">
+<span class="material-symbols-outlined text-primary mb-auto" data-icon="location_on">location_on</span>
+<div>
+<p class="text-xs text-on-surface-variant font-semibold uppercase tracking-wider">Venue</p>
+<p class="font-headline font-bold text-lg text-on-surface truncate">Sports Arena Deggendorf</p>
+</div>
+</div>
+</div>
+<!-- Host Section -->
+<div class="flex items-center justify-between bg-surface-container-lowest p-6 rounded-xl shadow-[0_4px_20px_-4px_rgba(49,41,80,0.08)]">
+<div class="flex items-center gap-4">
+<div class="relative">
+<img alt="Marco" class="w-16 h-16 rounded-full object-cover border-2 border-primary-container" data-alt="Portrait of a young athletic man named Marco with a friendly smile, outdoor natural lighting, high resolution professional headshot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAudbhG20Xrt1pREw0nHmSbpxJ1_9Zh4ODGYDAgO-uQ9U1p_3n9M3pJ5ILuzrT_SByOkiyCnaOgwmPlF2OdIpyt0mbS7K2gulY3ZtSw9KnkeaC2ANHIS5-sDIaHTy8GJXHEEWjuyi96KHxiG0DPZADzNtTZRNspqkjxuYvt4dIvMP13DxFyWUda1Wm00YMqW26INevsvF1V28z3C8ploJp5m1K_CyziOyLU8_C6eVpUQlZF676-46uicI078qZpRk_PtXc0g3RcOQQ"/>
+<div class="absolute -bottom-1 -right-1 bg-tertiary p-1 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-white" data-icon="verified" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<div>
+<p class="text-xs text-on-surface-variant font-medium">Hosted by</p>
+<h3 class="font-headline font-bold text-xl text-on-surface leading-tight">Marco</h3>
+<div class="flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-sm" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold text-on-surface">4.8</span>
+<span class="text-xs text-on-surface-variant font-medium ml-1">(12 Matches)</span>
+</div>
+</div>
+</div>
+<button class="bg-surface-container-high text-on-surface px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wide hover:bg-surface-container-highest transition-colors">
+                    View Profile
+                </button>
+</div>
+<!-- Description -->
+<div class="space-y-4">
+<h4 class="font-headline font-extrabold text-2xl tracking-tight">The Mission</h4>
+<p class="text-on-surface-variant leading-relaxed text-lg">
+                    Looking for <span class="text-primary font-semibold">two intermediate players</span> to join us for a high-energy doubles session. We've booked the premium panoramic court at the Arena. We're looking for competitive but friendly vibes to improve our baseline game and volleys.
+                </p>
+<div class="flex flex-wrap gap-2 pt-2">
+<span class="bg-surface-container-highest text-on-surface-variant px-4 py-2 rounded-lg text-sm font-medium">Rackets Provided</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-4 py-2 rounded-lg text-sm font-medium">Free Parking</span>
+<span class="bg-surface-container-highest text-on-surface-variant px-4 py-2 rounded-lg text-sm font-medium">Shower Access</span>
+</div>
+</div>
+<!-- Map Placeholder -->
+<div class="space-y-4">
+<div class="flex justify-between items-center">
+<h4 class="font-headline font-extrabold text-2xl tracking-tight text-on-surface">Location</h4>
+<span class="text-primary text-sm font-bold flex items-center gap-1">Open in Maps <span class="material-symbols-outlined text-sm" data-icon="north_east">north_east</span></span>
+</div>
+<div class="w-full h-48 rounded-xl overflow-hidden grayscale contrast-125 brightness-95 opacity-80">
+<img alt="Map" class="w-full h-full object-cover" data-alt="Minimalist monochromatic map view of Deggendorf urban streets with a clean, graphic design aesthetic" data-location="Deggendorf" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0Pn_pJOM_gPyAQ8rTb50zeXqUwqYlPqH2G9g8ipqOiiGGRLyonStVvlX6wiKjfiZcL7_PT5Dbe_3q2yIFU_mugwJt8j931gRxxUumss6V_ju6z3tv3nDq8OJW17BlFjLWOPicKvxxOb3zufqqTbHOB-3oNC_lXlNinXUK4oTBcPF24S9lTMpuE3CahIGIx5fZwYsYhhDVCV8bk2v6apcss9bRa-otd885exb98yHxesPf_IC54oIaO4zrsmEylaq9L7rHL7CxvLY"/>
+</div>
+</div>
+</div>
+</main>
+<!-- Fixed Action Bar (Special Contextual FAB) -->
+<div class="fixed bottom-0 left-0 w-full px-6 pb-10 pt-6 bg-gradient-to-t from-background via-background to-transparent z-40">
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-on-primary font-headline font-bold text-lg py-5 rounded-full shadow-[0_8px_32px_-4px_rgba(68,65,227,0.4)] active:scale-95 transition-transform uppercase tracking-widest">
+            Apply to Play
+        </button>
+</div>
+</body></html>

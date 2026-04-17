@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Create Event - Deg Connect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed-variant": "#6c1050",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#381c89",
+                    "primary-fixed-dim": "#8586ff",
+                    "inverse-primary": "#8283ff",
+                    "error": "#b41340",
+                    "on-primary-container": "#0d0080",
+                    "secondary": "#604ab3",
+                    "surface": "#faf4ff",
+                    "secondary-dim": "#543da6",
+                    "surface-container-low": "#f5eeff",
+                    "on-tertiary": "#ffeef4",
+                    "surface-container-high": "#e7deff",
+                    "tertiary-dim": "#882a68",
+                    "tertiary-fixed": "#fc8bce",
+                    "surface-variant": "#e1d7ff",
+                    "secondary-container": "#d6cbff",
+                    "surface-dim": "#d9ceff",
+                    "on-tertiary-container": "#600247",
+                    "primary-fixed": "#9596ff",
+                    "outline": "#7a719d",
+                    "secondary-fixed-dim": "#c9bbff",
+                    "secondary-fixed": "#d6cbff",
+                    "primary-dim": "#3731d7",
+                    "surface-bright": "#faf4ff",
+                    "surface-tint": "#4441e3",
+                    "on-primary-fixed": "#000000",
+                    "error-dim": "#a70138",
+                    "primary-container": "#9596ff",
+                    "on-secondary-fixed-variant": "#553ea7",
+                    "tertiary": "#973775",
+                    "surface-container-highest": "#e1d7ff",
+                    "on-primary": "#f4f1ff",
+                    "background": "#faf4ff",
+                    "on-secondary": "#f6f0ff",
+                    "on-background": "#312950",
+                    "outline-variant": "#b1a7d6",
+                    "on-tertiary-fixed": "#350026",
+                    "inverse-on-surface": "#a197c5",
+                    "error-container": "#f74b6d",
+                    "on-surface": "#312950",
+                    "inverse-surface": "#0f072d",
+                    "surface-container": "#ece4ff",
+                    "on-surface-variant": "#5e5680",
+                    "on-error": "#ffefef",
+                    "on-error-container": "#510017",
+                    "on-primary-fixed-variant": "#13009c",
+                    "tertiary-container": "#fc8bce",
+                    "primary": "#4441e3",
+                    "tertiary-fixed-dim": "#ec7ec0",
+                    "on-secondary-container": "#4b349d"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Be Vietnam Pro"],
+                    "label": ["Be Vietnam Pro"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body { font-family: 'Be Vietnam Pro', sans-serif; }
+        .headline-font { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- Top Navigation -->
+<header class="fixed top-0 w-full z-50 bg-violet-50/70 dark:bg-slate-950/70 backdrop-blur-xl flex items-center justify-between px-6 h-16 w-full">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 duration-200 hover:opacity-80 transition-opacity text-indigo-600 dark:text-indigo-400">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold tracking-tight text-indigo-700 dark:text-indigo-400 text-xl">Create Event</h1>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary-container animate-pulse"></span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-tertiary headline-font">Draft</span>
+</div>
+</header>
+<!-- Content Canvas -->
+<main class="pt-24 px-6 max-w-2xl mx-auto space-y-10">
+<!-- Hero Section -->
+<section class="relative group">
+<div class="aspect-[16/9] w-full rounded-xl overflow-hidden bg-surface-container shadow-sm">
+<img class="w-full h-full object-cover" data-alt="overhead shot of several yoga mats arranged in a circle on a rooftop during a purple and orange sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtZHLup69LYk9QepWPPF7zeXnDeK2UYGvvrZoexKNyHNfhwhgE6YKPbQv0eQJF4V5r1yTVMCeho3YLdftNwRZCnol_ZfD-nUN00Db2WXDM4qRRtR_ZA6Hm0RTOPejU44-JvXBWG-fX_F5P2HeFzP3GD8VFSgKjZuzradISdVqluS4rRA4Qjaw29RJDzfxPvz_rDAQU6uUXNg-y7bMBnesAxQTD2j4pFTEeFun1lA0Y1lzgsvf8Mb5-Aql3ansDtHI6q-xI6_PU9Og"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<button class="absolute bottom-4 right-4 bg-surface-container-lowest/20 backdrop-blur-md text-white px-4 py-2 rounded-full flex items-center gap-2 headline-font font-bold text-sm hover:bg-surface-container-lowest/30 transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="add_a_photo">add_a_photo</span>
+                    Add Cover Photo
+                </button>
+</div>
+</section>
+<!-- Form Fields -->
+<div class="space-y-8">
+<!-- Event Title -->
+<div class="group">
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-2 headline-font">Event Title</label>
+<input class="w-full bg-surface-container-lowest border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 text-2xl font-bold headline-font text-on-surface placeholder:text-outline-variant transition-colors py-4" placeholder="e.g., 'Sunset Yoga'" type="text"/>
+</div>
+<!-- Category Selection -->
+<div>
+<label class="block text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4 headline-font">Select Category</label>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 rounded-lg bg-secondary-container text-on-secondary-container text-sm font-semibold headline-font flex items-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="fitness_center">fitness_center</span>
+                        Sports
+                    </button>
+<button class="px-4 py-2 rounded-lg bg-surface-container-low text-on-surface text-sm font-semibold headline-font flex items-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="nightlife">nightlife</span>
+                        Nightlife
+                    </button>
+<button class="px-4 py-2 rounded-lg bg-surface-container-low text-on-surface text-sm font-semibold headline-font flex items-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="groups">groups</span>
+                        Social
+                    </button>
+<button class="px-4 py-2 rounded-lg bg-surface-container-low text-on-surface text-sm font-semibold headline-font flex items-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="palette">palette</span>
+                        Creative
+                    </button>
+<button class="px-4 py-2 rounded-lg bg-surface-container-low text-on-surface text-sm font-semibold headline-font flex items-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="restaurant">restaurant</span>
+                        Food
+                    </button>
+</div>
+</div>
+<!-- Date & Time Picker -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center gap-4">
+<div class="bg-primary-container/20 p-3 rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase tracking-tighter text-outline">Date</p>
+<input class="bg-transparent border-0 p-0 focus:ring-0 font-bold headline-font text-on-surface block" type="date"/>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl flex items-center gap-4">
+<div class="bg-primary-container/20 p-3 rounded-lg text-primary">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase tracking-tighter text-outline">Time</p>
+<input class="bg-transparent border-0 p-0 focus:ring-0 font-bold headline-font text-on-surface block" type="time"/>
+</div>
+</div>
+</div>
+<!-- Location Search -->
+<div class="bg-surface-container-lowest border-b-2 border-outline-variant p-2 rounded-xl group focus-within:border-primary transition-all">
+<div class="flex items-center px-4 gap-4">
+<span class="material-symbols-outlined text-outline" data-icon="location_on">location_on</span>
+<input class="w-full bg-transparent border-0 focus:ring-0 py-4 font-semibold text-on-surface placeholder:text-outline-variant" placeholder="Where is it happening?" type="text"/>
+<button class="text-primary hover:bg-primary-container/20 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="my_location">my_location</span>
+</button>
+</div>
+</div>
+<!-- The Vibe Description -->
+<div class="relative">
+<div class="absolute -top-3 left-4 bg-background px-2">
+<span class="text-[10px] font-bold uppercase tracking-widest text-tertiary headline-font">The Vibe</span>
+</div>
+<textarea class="w-full bg-surface-container-low border-0 rounded-2xl p-6 focus:ring-2 focus:ring-primary/20 text-on-surface placeholder:text-on-surface-variant/50 leading-relaxed" placeholder="What's the energy? Spontaneous drinks, hardcore flow, or just vibing to deep house..." rows="4"></textarea>
+</div>
+</div>
+<!-- Footer / CTA -->
+<div class="pt-6 pb-12">
+<button class="w-full bg-gradient-to-br from-primary to-primary-container text-white py-5 rounded-full headline-font font-extrabold text-lg uppercase tracking-widest shadow-lg shadow-indigo-200 active:scale-95 duration-300 ease-out flex items-center justify-center gap-3">
+<span class="material-symbols-outlined" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                Host Vibe
+            </button>
+<p class="text-center text-[10px] text-outline-variant mt-6 font-semibold uppercase tracking-[0.2em]">Visible to mutuals and local explorers</p>
+</div>
+</main>
+<!-- Bottom Navigation Shell -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-[2rem] bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl shadow-[0_-4px_24px_rgba(49,41,80,0.06)] flex justify-around items-center px-4 py-3">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-3 hover:text-indigo-500 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-['Be_Vietnam_Pro'] text-[10px] font-semibold uppercase tracking-wider mt-1">Feed</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-3 hover:text-indigo-500 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="font-['Be_Vietnam_Pro'] text-[10px] font-semibold uppercase tracking-wider mt-1">Explore</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-gradient-to-br from-indigo-600 to-violet-400 text-white rounded-full p-3 shadow-lg shadow-indigo-200 dark:shadow-none active:scale-90 duration-300 ease-out" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="font-['Be_Vietnam_Pro'] text-[10px] font-semibold uppercase tracking-wider mt-1">Create</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 p-3 hover:text-indigo-500 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-['Be_Vietnam_Pro'] text-[10px] font-semibold uppercase tracking-wider mt-1">Profile</span>
+</a>
+</nav>
+</body></html>

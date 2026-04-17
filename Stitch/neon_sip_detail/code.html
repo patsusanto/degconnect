@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container": "#ece4ff",
+                    "on-surface": "#312950",
+                    "inverse-surface": "#0f072d",
+                    "error-container": "#f74b6d",
+                    "inverse-on-surface": "#a197c5",
+                    "on-tertiary-fixed": "#350026",
+                    "tertiary-fixed-dim": "#ec7ec0",
+                    "on-secondary-container": "#4b349d",
+                    "tertiary-container": "#fc8bce",
+                    "primary": "#4441e3",
+                    "on-error-container": "#510017",
+                    "on-primary-fixed-variant": "#13009c",
+                    "on-error": "#ffefef",
+                    "on-surface-variant": "#5e5680",
+                    "on-primary": "#f4f1ff",
+                    "background": "#faf4ff",
+                    "tertiary": "#973775",
+                    "surface-container-highest": "#e1d7ff",
+                    "primary-container": "#9596ff",
+                    "on-secondary-fixed-variant": "#553ea7",
+                    "error-dim": "#a70138",
+                    "outline-variant": "#b1a7d6",
+                    "on-background": "#312950",
+                    "on-secondary": "#f6f0ff",
+                    "primary-fixed": "#9596ff",
+                    "on-tertiary-container": "#600247",
+                    "secondary-container": "#d6cbff",
+                    "surface-dim": "#d9ceff",
+                    "tertiary-fixed": "#fc8bce",
+                    "surface-variant": "#e1d7ff",
+                    "tertiary-dim": "#882a68",
+                    "surface-bright": "#faf4ff",
+                    "surface-tint": "#4441e3",
+                    "on-primary-fixed": "#000000",
+                    "primary-dim": "#3731d7",
+                    "secondary-fixed": "#d6cbff",
+                    "secondary-fixed-dim": "#c9bbff",
+                    "outline": "#7a719d",
+                    "secondary": "#604ab3",
+                    "surface": "#faf4ff",
+                    "error": "#b41340",
+                    "on-primary-container": "#0d0080",
+                    "inverse-primary": "#8283ff",
+                    "primary-fixed-dim": "#8586ff",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#381c89",
+                    "on-tertiary-fixed-variant": "#6c1050",
+                    "surface-container-high": "#e7deff",
+                    "on-tertiary": "#ffeef4",
+                    "surface-container-low": "#f5eeff",
+                    "secondary-dim": "#543da6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Be Vietnam Pro"],
+                    "label": ["Be Vietnam Pro"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-header {
+            background: rgba(250, 244, 255, 0.7);
+            backdrop-filter: blur(20px);
+        }
+        .asymmetric-clip {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- Top Navigation -->
+<nav class="fixed top-0 w-full z-50 flex items-center justify-between px-6 py-4 glass-header">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-lowest text-primary transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<span class="font-headline font-bold tracking-tight text-indigo-700">Deg Connect</span>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-lowest text-on-surface transition-transform active:scale-95">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+</nav>
+<main class="pb-32">
+<!-- Hero Section with Asymmetric Image -->
+<section class="relative h-[530px] w-full overflow-hidden asymmetric-clip">
+<img alt="Neon Cocktail Bar" class="w-full h-full object-cover" data-alt="cinematic interior of a dark cocktail lounge with vibrant pink and cyan neon lighting, smoke atmosphere, and crystal glassware on a marble bar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA5mNVYutYm17YNxnTxsz_x6rLlvX6lExaOqSjZvwLuiNv6hefItVIcxJprhD3gYsi8zaZXVHIPaVik6TQwipyYeaBOa8z2l0lgTx9oo3PjupQJcbQfOg7IukxkLzamNFyxkdkmjj042Z0zxplqHRhiLGIdPygHE-bOBXqrxqWM5bcE30-s0IYHJ9aDX_8sWKeECF13iSxPySAFk0_fPb-uyfG1oJNzpulpSB3rTowTEo2Jrkj07WaKOMb-3mUANcQAQw-mowbSsbQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-16 left-6 right-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-tertiary-container/90 text-on-tertiary-container mb-4">
+<span class="material-symbols-outlined text-[14px]" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label text-[10px] font-bold uppercase tracking-widest">Trending Now</span>
+</div>
+<h1 class="font-headline text-4xl md:text-6xl font-extrabold text-white leading-[1.1] tracking-tight">
+                    Neon Sip: <br/>Secret Menu Night
+                </h1>
+</div>
+</section>
+<!-- Content Grid -->
+<div class="px-6 -mt-8 relative z-10">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Left Column: Primary Info -->
+<div class="md:col-span-8 space-y-8">
+<!-- Essential Details Bento -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm">
+<span class="material-symbols-outlined text-primary mb-3" data-icon="calendar_today">calendar_today</span>
+<p class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest mb-1">Date &amp; Time</p>
+<p class="font-headline font-bold text-on-surface text-lg">Tonight, 9:00 PM</p>
+</div>
+<div class="bg-surface-container-lowest p-5 rounded-xl shadow-sm">
+<span class="material-symbols-outlined text-tertiary mb-3" data-icon="location_on">location_on</span>
+<p class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest mb-1">Location</p>
+<p class="font-headline font-bold text-on-surface text-lg">The Velvet Lounge</p>
+</div>
+</div>
+<!-- Description -->
+<div class="space-y-4">
+<h2 class="font-headline text-2xl font-bold text-on-surface">About the Vibe</h2>
+<p class="text-on-surface-variant leading-relaxed text-lg font-body">
+                            Step into a world where mixology meets mystery. For tonight only, we're unlocking the vault. Our lead alchemist has crafted a <span class="text-primary font-semibold">secret experimental menu</span> featuring ingredients sourced from across the globe. 
+                        </p>
+<p class="text-on-surface-variant leading-relaxed text-lg font-body">
+                            Expect neon-infused elixirs, molecular surprises, and a soundtrack of deep house curated specifically for this sensory journey. No reservations—first come, first vibed.
+                        </p>
+</div>
+<!-- Guest List Preview -->
+<div class="bg-surface-container-low p-6 rounded-2xl flex items-center justify-between">
+<div class="flex -space-x-3">
+<img alt="Guest" class="w-10 h-10 rounded-full border-2 border-surface-container-low" data-alt="portrait of a stylish young woman with a warm smile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgvh04A3MYbr5JWEh3AmqbOBzo5XwanDqvL9kvkCoDYAr2DyX5xhJWtkWzWqcrHegS271RUkqJo9QZp-EhVwyaYOuwPjvylDji1bJc0pqGexwdVjeg_9PiQ9YiaT5E4tBP1rw6QPXd0OQWoolEd4Jd3JrzmIV0KfGS-aJWZDR2V93J4ob82h0X4lVLf9e8hY_h3q74hkiNCa08s89G283Pw53GL4xE14F1F1TLPf5diY4pupfmiYgFJqUOBmkxalSwLx9AsCiFxSo"/>
+<img alt="Guest" class="w-10 h-10 rounded-full border-2 border-surface-container-low" data-alt="portrait of a man with modern eyewear and creative style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpWB59MUtPfaJhlVEb27JrVyZS5yroZXOXedajtUJs9kkAqsz-Ktrx0ofJ-VuMKtMGAtrV0yByB-PawSiNz4s-FelQIoSDNdkq-JrgLBx02o_qTE52wEORc2gkmg16LsgjZQ_CvDGqfehvr599qpIf_wEO9yEVpsudU9VZpfX051uOLeICr8MrtPp3fWME2i4ehp-sk3ndzbk1QGs8N6dgZ5QJSgEslxNGPskf-fvSNfGQWNSBAKWzexnvgaTo4lPhcbiqiH4Vbd8"/>
+<img alt="Guest" class="w-10 h-10 rounded-full border-2 border-surface-container-low" data-alt="portrait of a person with colorful artistic expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeFELRHw0IBLb3ooRYk_copuTrPtvepCv8gd8fbj6oZJFrUlvnbvZDZthFX3cNhGEgHkIKEJIw6gCxGQhnu8ePOTVApu2YIYmK6aM-zcvE4R-o4yXtQK_9ZjG7WBmGbPCkdHDUnVgzpsdBX3M1E8LYt1pTP4Oa6SqSYWrRcN4K6g74tKHD1fNdhqB9Ti-T23sFdSKDieU9Dq7Xtyz2v7HuN6po8cf0UVE2NJXc9zVKDvCu4rK1e_tVzQ4S19WZboUmxWqYOPzTMcc"/>
+<div class="w-10 h-10 rounded-full border-2 border-surface-container-low bg-primary text-white flex items-center justify-center text-xs font-bold">+42</div>
+</div>
+<p class="font-label text-sm font-semibold text-primary">Joining the scene</p>
+</div>
+</div>
+<!-- Right Column: Map/Extra -->
+<div class="md:col-span-4 space-y-6">
+<div class="rounded-2xl overflow-hidden h-48 bg-surface-container-highest relative">
+<img alt="Map Location" class="w-full h-full object-cover" data-alt="minimalist dark mode map showing urban streets and a glowing destination pin" data-location="New York City" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvzNPK0ztkg_Ny94zAesM_pkV6Eu2p_aQKXmjwZvxRNTzLUgEvHUHnxA-byk82FKobdZEc71A69PqOz_F6zn7C6PbqSY9Yiowj_nmCE76RRSq7ZP2T6mWB_d3TUv1AGdgG9-cPmgkYN6OUMLZh53WNFEC5VMQxa_7Kp3I14m0kK_dEMFPuiaClyigxSH9s3YhCOqBUaVnicgvZx83my3v2smcJka6Hzw93dfCDhqKcpGIznc4zLQBJgLCb-8OS0IDOpbbqcc8X8O8"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-primary p-3 rounded-full shadow-lg shadow-primary/40">
+<span class="material-symbols-outlined text-white" data-icon="pin_drop" style="font-variation-settings: 'FILL' 1;">pin_drop</span>
+</div>
+</div>
+</div>
+<div class="p-6 rounded-2xl border-2 border-outline-variant/15 space-y-4">
+<h3 class="font-headline font-bold text-on-surface">Entry Requirements</h3>
+<ul class="space-y-3">
+<li class="flex items-center gap-3 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-green-500 text-lg" data-icon="check_circle">check_circle</span>
+                                21+ with Valid ID
+                            </li>
+<li class="flex items-center gap-3 text-on-surface-variant text-sm">
+<span class="material-symbols-outlined text-green-500 text-lg" data-icon="check_circle">check_circle</span>
+                                Smart Casual / Neon Accents
+                            </li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Fixed Action Footer -->
+<div class="fixed bottom-0 left-0 w-full px-6 pb-8 pt-4 glass-header z-50">
+<div class="max-w-4xl mx-auto flex items-center justify-between gap-4">
+<div class="hidden sm:block">
+<p class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest">Entry Fee</p>
+<p class="font-headline font-extrabold text-2xl text-on-surface">$25.00</p>
+</div>
+<button class="flex-1 sm:flex-initial px-10 py-4 rounded-full bg-gradient-to-br from-primary to-primary-container text-white font-headline font-bold text-lg shadow-xl shadow-primary/20 transition-transform active:scale-95">
+                Join Vibe
+            </button>
+</div>
+</div>
+<!-- Background Decoration -->
+<div class="fixed top-1/4 -right-24 w-64 h-64 bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="fixed bottom-1/4 -left-24 w-80 h-80 bg-tertiary/5 rounded-full blur-[100px] pointer-events-none"></div>
+</body></html>
