@@ -132,15 +132,17 @@ export default function EventFeed() {
 
       {/* Header */}
       <View style={[s.header, { paddingTop: insets.top + 4 }]}>
-        <TouchableOpacity onPress={() => router.push('/create-event')} activeOpacity={0.6} hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}>
-          <MaterialIcons name="add" size={28} color={C.primary} />
-        </TouchableOpacity>
-        <View style={s.logoCenter} pointerEvents="none">
-          <DegConnectLogo width={130} height={38} viewBox="260 355 510 300" fill={C.primary} />
+        <View style={s.headerSide}>
+          <TouchableOpacity onPress={() => router.push('/create-event')} activeOpacity={0.6} hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}>
+            <MaterialIcons name="add" size={28} color={C.primary} />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity style={s.notifBtn}>
-          <MaterialIcons name="notifications-none" size={22} color={C.onSurfaceVariant} />
-        </TouchableOpacity>
+        <DegConnectLogo width={130} height={38} viewBox="260 355 510 300" fill={C.primary} />
+        <View style={[s.headerSide, { alignItems: 'flex-end' }]}>
+          <TouchableOpacity style={s.notifBtn}>
+            <MaterialIcons name="notifications-none" size={22} color={C.onSurfaceVariant} />
+          </TouchableOpacity>
+        </View>
       </View>
 
       <ScrollView
@@ -166,18 +168,15 @@ const s = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     paddingHorizontal: 20,
     paddingBottom: 6,
     backgroundColor: C.bg,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: C.outlineVariant,
   },
-  logoCenter: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    alignItems: 'center',
+  headerSide: {
+    flex: 1,
   },
   notifBtn: { padding: 4 },
 
