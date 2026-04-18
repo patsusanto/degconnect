@@ -14,19 +14,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { useOnboarding } from '@/context/onboarding-context';
 import { C, FONTS } from '@/constants/design';
-
-const INTERESTS = [
-  'Nightlife',
-  'Sports',
-  'Padel',
-  'Live Music',
-  'Tech Talks',
-  'Networking',
-  'Food Spots',
-  'Hiking',
-  'Culture',
-  'Community',
-];
+import { DEFAULT_INTERESTS, MAIN_INTERESTS, getSuggestedInterests } from '@/constants/interests';
 
 export default function OnboardingScreen() {
   const insets = useSafeAreaInsets();
@@ -35,7 +23,7 @@ export default function OnboardingScreen() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [city, setCity] = useState('Deggendorf');
-  const [selectedInterests, setSelectedInterests] = useState<string[]>(['Networking', 'Live Music', 'Tech Talks']);
+  const [selectedInterests, setSelectedInterests] = useState<string[]>(DEFAULT_INTERESTS);
 
   useEffect(() => {
     if (hasCompletedOnboarding) {
@@ -46,6 +34,10 @@ export default function OnboardingScreen() {
   const isValid = useMemo(
     () => name.trim().length >= 2 && email.trim().length >= 5 && selectedInterests.length >= 3,
     [email, name, selectedInterests.length],
+  );
+  const suggestedInterests = useMemo(
+    () => getSuggestedInterests(selectedInterests),
+    [selectedInterests],
   );
 
   const toggleInterest = (interest: string) => {
@@ -136,29 +128,54 @@ export default function OnboardingScreen() {
           <View style={s.interestsHeader}>
             <View>
               <Text style={s.cardTitle}>Deine Interessen</Text>
-              <Text style={s.cardText}>Waehle die Themen, die du spaeter im Feed priorisiert sehen willst.</Text>
+              <Text style={s.cardText}>Waehle zuerst die Hauptinteressen. Danach schlagen wir automatisch passende Themen vor.</Text>
             </View>
             <View style={s.counterPill}>
               <Text style={s.counterText}>{selectedInterests.length} aktiv</Text>
             </View>
           </View>
 
-          <View style={s.chips}>
-            {INTERESTS.map(interest => {
-              const active = selectedInterests.includes(interest);
-              return (
-                <TouchableOpacity
-                  key={interest}
-                  style={[s.chip, active ? s.chipActive : s.chipInactive]}
-                  onPress={() => toggleInterest(interest)}
-                  activeOpacity={0.86}
-                >
-                  <Text style={[s.chipText, active ? s.chipTextActive : s.chipTextInactive]}>{interest}</Text>
-                  {active ? <MaterialIcons name="check" size={16} color="#fff" /> : null}
-                </TouchableOpacity>
-              );
-            })}
+          <View style={s.interestBlock}>
+            <Text style={s.blockLabel}>Hauptinteressen</Text>
+            <View style={s.chips}>
+              {MAIN_INTERESTS.map(interest => {
+                const active = selectedInterests.includes(interest);
+                return (
+                  <TouchableOpacity
+                    key={interest}
+                    style={[s.chip, active ? s.chipActive : s.chipInactive]}
+                    onPress={() => toggleInterest(interest)}
+                    activeOpacity={0.86}
+                  >
+                    <Text style={[s.chipText, active ? s.chipTextActive : s.chipTextInactive]}>{interest}</Text>
+                    {active ? <MaterialIcons name="check" size={16} color="#fff" /> : null}
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
           </View>
+
+          {suggestedInterests.length > 0 ? (
+            <View style={s.interestBlock}>
+              <Text style={s.blockLabel}>Passend zu deiner Auswahl</Text>
+              <View style={s.chips}>
+                {suggestedInterests.map(interest => {
+                  const active = selectedInterests.includes(interest);
+                  return (
+                    <TouchableOpacity
+                      key={interest}
+                      style={[s.chip, active ? s.chipActive : s.chipSuggestion]}
+                      onPress={() => toggleInterest(interest)}
+                      activeOpacity={0.86}
+                    >
+                      <Text style={[s.chipText, active ? s.chipTextActive : s.chipSuggestionText]}>{interest}</Text>
+                      {active ? <MaterialIcons name="check" size={16} color="#fff" /> : null}
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
+            </View>
+          ) : null}
         </View>
 
         <TouchableOpacity
@@ -261,6 +278,7 @@ const s = StyleSheet.create({
     shadowOpacity: 0.09,
     shadowRadius: 20,
     elevation: 8,
+    gap: 18,
   },
   cardHeader: {
     marginBottom: 18,
@@ -322,6 +340,16 @@ const s = StyleSheet.create({
     flexWrap: 'wrap',
     gap: 10,
   },
+  interestBlock: {
+    gap: 12,
+  },
+  blockLabel: {
+    color: C.onSurfaceVariant,
+    fontSize: 12,
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: 1.1,
+  },
   chip: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -336,6 +364,9 @@ const s = StyleSheet.create({
   chipInactive: {
     backgroundColor: C.surfaceContainer,
   },
+  chipSuggestion: {
+    backgroundColor: C.secondaryFixed,
+  },
   chipText: {
     fontSize: 14,
     fontWeight: '700',
@@ -345,6 +376,9 @@ const s = StyleSheet.create({
   },
   chipTextInactive: {
     color: C.onSurfaceVariant,
+  },
+  chipSuggestionText: {
+    color: C.onSecondaryContainer,
   },
   cta: {
     marginHorizontal: 20,

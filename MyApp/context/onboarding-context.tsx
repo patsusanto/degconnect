@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useMemo, useState } from 'react';
+import { DEFAULT_INTERESTS } from '@/constants/interests';
 
 type AccountData = {
   name: string;
@@ -18,7 +19,7 @@ const DEFAULT_ACCOUNT: AccountData = {
   name: 'Marco',
   email: 'marco@example.com',
   city: 'Deggendorf',
-  interests: ['Basketball', 'Mixology', 'Live Music', 'Art Exhibitions'],
+  interests: DEFAULT_INTERESTS,
 };
 
 const OnboardingContext = createContext<OnboardingContextValue | null>(null);
