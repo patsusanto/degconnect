@@ -188,7 +188,6 @@ function HeroCard({ event, onPress }: { event: Event; onPress: () => void }) {
   return (
     <TouchableOpacity style={[hc.card, { width: cardW }]} onPress={onPress} activeOpacity={0.92}>
       <Image source={{ uri: event.image }} style={hc.image} contentFit="cover" />
-      <View style={hc.overlay} pointerEvents="none" />
       <View style={hc.content}>
         <View style={hc.badgeRow}>
           <View style={hc.badge}>
