@@ -8,7 +8,6 @@ import {
   StatusBar,
 } from 'react-native';
 import { Image } from 'expo-image';
-import DegConnectLogo from '@/assets/images/degconnect.svg';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -135,10 +134,7 @@ export default function EventFeed() {
         <TouchableOpacity onPress={() => router.push('/create-event')} activeOpacity={0.6} hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}>
           <MaterialIcons name="add" size={28} color={C.primary} />
         </TouchableOpacity>
-        <View style={s.logoWrap} pointerEvents="none">
-          <DegConnectLogo width={130} height={38} viewBox="260 355 510 300" fill={C.primary} />
-        </View>
-        <TouchableOpacity style={s.notifBtn}>
+<TouchableOpacity style={s.notifBtn}>
           <MaterialIcons name="notifications-none" size={22} color={C.onSurfaceVariant} />
         </TouchableOpacity>
       </View>
