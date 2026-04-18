@@ -11,6 +11,7 @@ import { Image } from 'expo-image';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { C as DC } from '@/constants/design';
+import { useOnboarding } from '@/context/onboarding-context';
 
 const C = {
   primary: DC.secondary,
@@ -39,19 +40,24 @@ const ALL_INTERESTS = [
   'Art Exhibitions',
   'Tech Talks',
   'Networking',
+  'Nightlife',
+  'Food Spots',
+  'Hiking',
+  'Culture',
+  'Community',
 ];
-
-const INITIAL_SELECTED = new Set(['Basketball', 'Mixology', 'Live Music', 'Art Exhibitions']);
 
 export default function ProfileScreen() {
   const insets = useSafeAreaInsets();
-  const [selected, setSelected] = useState<Set<string>>(new Set(INITIAL_SELECTED));
+  const { account, updateInterests } = useOnboarding();
+  const [selected, setSelected] = useState<Set<string>>(new Set(account.interests));
 
   const toggleInterest = (interest: string) => {
     setSelected(prev => {
       const next = new Set(prev);
       if (next.has(interest)) next.delete(interest);
       else next.add(interest);
+      updateInterests(Array.from(next));
       return next;
     });
   };
@@ -86,9 +92,9 @@ export default function ProfileScreen() {
               <MaterialIcons name="edit" size={14} color="white" />
             </TouchableOpacity>
           </View>
-          <Text style={s.name}>Marco</Text>
+          <Text style={s.name}>{account.name}</Text>
           <Text style={s.bio}>
-            Connecting dots and people in Lower Bavaria. Always hunting for the best espresso and new tech events.
+            Based in {account.city}. Focused on finding the right people, the right events and a feed that matches your interests.
           </Text>
         </View>
 
