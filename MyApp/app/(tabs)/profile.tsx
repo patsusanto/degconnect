@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   View,
   ScrollView,
@@ -11,6 +11,8 @@ import { Image } from 'expo-image';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { C as DC } from '@/constants/design';
+import { useOnboarding } from '@/context/onboarding-context';
+import { MAIN_INTERESTS, getSuggestedInterests } from '@/constants/interests';
 
 const C = {
   primary: DC.secondary,
@@ -31,27 +33,22 @@ const C = {
 const PROFILE_IMG = 'https://lh3.googleusercontent.com/aida-public/AB6AXuBhE8O9_lfG5fhMFvx2_Q7iV9k7iEQ6EKAiAduXNLekZNdCvbBFjMIpw_33i1TqfVMHe_-8D6N0vUeHpV7MWdcWzkUF-rG12ChamdNhc7jLxK491fKUSkBLtNpJoROAPvoCWBSjRe1fv_Csrz6eZaIwT0ZYmg_LczceuFyvg2mF-Ujunh5EgXfXksGilXMtL1JYwR9h3rkDoR7NTN6MCZypTAQvu1_0S1m8YXa2h-eYx0TmGm-HL_u8sLJw9BQ3kj8X4wyhnGk6MKI';
 const MAP_IMG = 'https://lh3.googleusercontent.com/aida-public/AB6AXuBbuWSAmLsO74K1ec1QfFj6E9R_m0oPfmx0x2xu7KmJVPYV6yJYFtwYDRPGaGc0Nl1IjEYvqqF3IN7Okfb8hrrehQ0LOTXvPbgEbx2AlrPoGVHcyv-YSwIoAG4clw7d0klTRuqvo1sVbkHZUrNLXqBBpWYdNFdFlLGUaLlMiuJ9YIoEots7FeuqT0w0kAyvKgIqryEf8vTKQE4ApjM-9PepnUxb1Lu4yOO0kUxRNs-ZSh_oBbOzFA6KdqHLmOb28551Mka49leGGUk';
 
-const ALL_INTERESTS = [
-  'Basketball',
-  'Mixology',
-  'Padel',
-  'Live Music',
-  'Art Exhibitions',
-  'Tech Talks',
-  'Networking',
-];
-
-const INITIAL_SELECTED = new Set(['Basketball', 'Mixology', 'Live Music', 'Art Exhibitions']);
-
 export default function ProfileScreen() {
   const insets = useSafeAreaInsets();
-  const [selected, setSelected] = useState<Set<string>>(new Set(INITIAL_SELECTED));
+  const { account, updateInterests } = useOnboarding();
+  const [selected, setSelected] = useState<Set<string>>(new Set(account.interests));
+  const selectedInterests = useMemo(() => Array.from(selected), [selected]);
+  const suggestedInterests = useMemo(
+    () => getSuggestedInterests(selectedInterests),
+    [selectedInterests],
+  );
 
   const toggleInterest = (interest: string) => {
     setSelected(prev => {
       const next = new Set(prev);
       if (next.has(interest)) next.delete(interest);
       else next.add(interest);
+      updateInterests(Array.from(next));
       return next;
     });
   };
@@ -86,9 +83,9 @@ export default function ProfileScreen() {
               <MaterialIcons name="edit" size={14} color="white" />
             </TouchableOpacity>
           </View>
-          <Text style={s.name}>Marco</Text>
+          <Text style={s.name}>{account.name}</Text>
           <Text style={s.bio}>
-            Connecting dots and people in Lower Bavaria. Always hunting for the best espresso and new tech events.
+            Based in {account.city}. Focused on finding the right people, the right events and a feed that matches your interests.
           </Text>
         </View>
 
@@ -113,26 +110,55 @@ export default function ProfileScreen() {
             </View>
           </View>
           <View style={s.chipsCard}>
-            <View style={s.chips}>
-              {ALL_INTERESTS.map(interest => {
-                const active = selected.has(interest);
-                return (
-                  <TouchableOpacity
-                    key={interest}
-                    style={[s.chip, active ? s.chipActive : s.chipInactive]}
-                    onPress={() => toggleInterest(interest)}
-                    activeOpacity={0.8}
-                  >
-                    <Text style={[s.chipText, active ? s.chipTextActive : s.chipTextInactive]}>
-                      {interest}
-                    </Text>
-                    {active && (
-                      <MaterialIcons name="check" size={13} color="white" />
-                    )}
-                  </TouchableOpacity>
-                );
-              })}
+            <View style={s.interestBlock}>
+              <Text style={s.blockLabel}>Main Interests</Text>
+              <View style={s.chips}>
+                {MAIN_INTERESTS.map(interest => {
+                  const active = selected.has(interest);
+                  return (
+                    <TouchableOpacity
+                      key={interest}
+                      style={[s.chip, active ? s.chipActive : s.chipInactive]}
+                      onPress={() => toggleInterest(interest)}
+                      activeOpacity={0.8}
+                    >
+                      <Text style={[s.chipText, active ? s.chipTextActive : s.chipTextInactive]}>
+                        {interest}
+                      </Text>
+                      {active && (
+                        <MaterialIcons name="check" size={13} color="white" />
+                      )}
+                    </TouchableOpacity>
+                  );
+                })}
+              </View>
             </View>
+
+            {suggestedInterests.length > 0 ? (
+              <View style={s.interestBlock}>
+                <Text style={s.blockLabel}>Suggested Matches</Text>
+                <View style={s.chips}>
+                  {suggestedInterests.map(interest => {
+                    const active = selected.has(interest);
+                    return (
+                      <TouchableOpacity
+                        key={interest}
+                        style={[s.chip, active ? s.chipActive : s.chipSuggested]}
+                        onPress={() => toggleInterest(interest)}
+                        activeOpacity={0.8}
+                      >
+                        <Text style={[s.chipText, active ? s.chipTextActive : s.chipSuggestedText]}>
+                          {interest}
+                        </Text>
+                        {active && (
+                          <MaterialIcons name="check" size={13} color="white" />
+                        )}
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
+              </View>
+            ) : null}
           </View>
         </View>
 
@@ -274,11 +300,20 @@ const s = StyleSheet.create({
     backgroundColor: C.surfaceLowest,
     borderRadius: 16,
     padding: 20,
+    gap: 18,
     shadowColor: C.onSurface,
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.05,
     shadowRadius: 8,
     elevation: 2,
+  },
+  interestBlock: { gap: 10 },
+  blockLabel: {
+    fontSize: 11,
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+    color: C.onSurfaceVariant,
   },
   chips: { flexDirection: 'row', flexWrap: 'wrap', gap: 8 },
   chip: {
@@ -291,9 +326,11 @@ const s = StyleSheet.create({
   },
   chipActive: { backgroundColor: C.primary },
   chipInactive: { backgroundColor: C.surface },
+  chipSuggested: { backgroundColor: DC.secondaryFixed },
   chipText: { fontSize: 14, fontWeight: '600' },
   chipTextActive: { color: 'white' },
   chipTextInactive: { color: C.onSecondaryContainer },
+  chipSuggestedText: { color: DC.onSecondaryContainer },
 
   locationCard: {
     borderRadius: 16,
