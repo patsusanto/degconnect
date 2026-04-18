@@ -125,14 +125,9 @@ export default function OnboardingScreen() {
         </View>
 
         <View style={s.card}>
-          <View style={s.interestsHeader}>
-            <View>
-              <Text style={s.cardTitle}>Deine Interessen</Text>
-              <Text style={s.cardText}>Waehle zuerst die Hauptinteressen. Danach schlagen wir automatisch passende Themen vor.</Text>
-            </View>
-            <View style={s.counterPill}>
-              <Text style={s.counterText}>{selectedInterests.length} aktiv</Text>
-            </View>
+          <View style={s.cardHeader}>
+            <Text style={s.cardTitle}>Deine Interessen</Text>
+            <Text style={s.cardText}>Waehle zuerst die Hauptinteressen. Danach schlagen wir automatisch passende Themen vor.</Text>
           </View>
 
           <View style={s.interestBlock}>
