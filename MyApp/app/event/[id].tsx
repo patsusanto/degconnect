@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   View,
   ScrollView,
@@ -12,17 +12,16 @@ import { Image } from 'expo-image';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { getEventById } from '@/constants/events';
-
 import { C, getBorderColor, FONTS } from '@/constants/design';
+import { useEvents } from '@/context/events-context';
 
 export default function EventDetail() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
   const insets = useSafeAreaInsets();
-  const [bookmarked, setBookmarked] = useState(false);
+  const { getEvent, toggleSave, isSaved } = useEvents();
 
-  const event = getEventById(id);
+  const event = getEvent(id);
 
   if (!event) {
     return (
@@ -53,7 +52,11 @@ export default function EventDetail() {
       <ScrollView showsVerticalScrollIndicator={false} bounces>
         {/* Hero */}
         <View style={s.hero}>
-          <Image source={{ uri: event.image }} style={StyleSheet.absoluteFillObject} contentFit="cover" />
+          <Image
+            source={event.image ? { uri: event.image } : require('@/assets/images/img.png')}
+            style={StyleSheet.absoluteFillObject}
+            contentFit="cover"
+          />
           <View style={s.heroGradient} pointerEvents="none" />
           <View style={s.heroContent}>
             <View style={s.heroBadgeRow}>
@@ -152,13 +155,13 @@ export default function EventDetail() {
       {/* Fixed CTA footer */}
       <View style={[s.footer, { paddingBottom: insets.bottom + 12 }]}>
         <TouchableOpacity
-          style={[s.bookmarkFooterBtn, bookmarked && s.bookmarkFooterBtnActive]}
-          onPress={() => setBookmarked(b => !b)}
+          style={[s.bookmarkFooterBtn, isSaved(event.id) && s.bookmarkFooterBtnActive]}
+          onPress={() => toggleSave(event)}
         >
           <MaterialIcons
-            name={bookmarked ? 'bookmark' : 'bookmark-border'}
+            name={isSaved(event.id) ? 'bookmark' : 'bookmark-border'}
             size={22}
-            color={bookmarked ? 'white' : C.primary}
+            color={isSaved(event.id) ? 'white' : C.primary}
           />
         </TouchableOpacity>
         <TouchableOpacity style={s.ctaBtn} activeOpacity={0.85}>

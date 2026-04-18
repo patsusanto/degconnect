@@ -16,8 +16,8 @@ type OnboardingContextValue = {
 };
 
 const DEFAULT_ACCOUNT: AccountData = {
-  name: 'Marco',
-  email: 'marco@example.com',
+  name: 'Timo',
+  email: 'timo@degconnect.de',
   city: 'Deggendorf',
   interests: DEFAULT_INTERESTS,
 };

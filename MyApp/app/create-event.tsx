@@ -15,12 +15,16 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { C, FONTS } from '@/constants/design';
+import { useEvents } from '@/context/events-context';
+import { useOnboarding } from '@/context/onboarding-context';
 
 const CATEGORIES = ['Sports', 'Nightlife', 'Outdoors', 'Social', 'Culture', 'Community', 'Matchmaking'];
 
 export default function CreateEvent() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const { addEvent } = useEvents();
+  const { account } = useOnboarding();
 
   const [title, setTitle] = useState('Spontan Volleyball im Stadtpark');
   const [category, setCategory] = useState('Sports');
@@ -31,6 +35,31 @@ export default function CreateEvent() {
   const [isLive, setIsLive] = useState(false);
 
   const canPost = title.trim().length > 0 && category.length > 0 && location.trim().length > 0;
+
+  const handlePost = () => {
+    if (!canPost) return;
+    addEvent({
+      id: `user-${Date.now()}`,
+      title: title.trim(),
+      category,
+      date: isLive ? 'Live Now' : `${date}${time ? ' • ' + time : ''}`,
+      location: location.trim(),
+      image: '',
+      cta: 'Join',
+      isLive,
+      attendeeCount: 0,
+      avatars: [],
+      isJoin: true,
+      description: description.trim(),
+      host: {
+        name: account.name,
+        avatar: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCeYwP3zwzpx-B-uCkiMCn7GwT5a40e9WIqS5bvLIXzDstpVFCVNBcPSaV25MaG4X8H_QqvHZPVw2iUU692AKwSe5E2BKknFERapAIFIifdEEt9S7bLUhsnQG2rQFoxBhYZlDEBkQ7vVp-G9IxWfU0q8pXcQ9elkwukLy1HTTv7IWaslEfynV7FMw_T6Mg53yVEXSmV7kx7L2F7ZZyP-oH3GbD7IbdwSiE_QVhC7-fou-1qusmfP0J1dRB0_f2ITYZZp-wsJrrdu6w',
+        rating: '5.0',
+        games: '1',
+      },
+    });
+    router.back();
+  };
 
   return (
     <KeyboardAvoidingView
@@ -47,7 +76,7 @@ export default function CreateEvent() {
         <Text style={s.headerTitle}>New Event</Text>
         <TouchableOpacity
           style={[s.postBtn, !canPost && s.postBtnDisabled]}
-          onPress={() => router.back()}
+          onPress={handlePost}
           disabled={!canPost}
           activeOpacity={0.8}
         >

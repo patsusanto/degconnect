@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   View,
   ScrollView,
@@ -12,15 +12,15 @@ import DegConnectLogo from '@/assets/images/degconnect.svg';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { ALL_EVENTS, FEED_EVENT_IDS, Event } from '@/constants/events';
+import { Event } from '@/constants/events';
 import { C, FONTS } from '@/constants/design';
-
-const EVENTS = ALL_EVENTS.filter(e => FEED_EVENT_IDS.includes(e.id));
+import { useEvents } from '@/context/events-context';
 
 const DEFAULT_AVATAR = 'https://lh3.googleusercontent.com/aida-public/AB6AXuCeYwP3zwzpx-B-uCkiMCn7GwT5a40e9WIqS5bvLIXzDstpVFCVNBcPSaV25MaG4X8H_QqvHZPVw2iUU692AKwSe5E2BKknFERapAIFIifdEEt9S7bLUhsnQG2rQFoxBhYZlDEBkQ7vVp-G9IxWfU0q8pXcQ9elkwukLy1HTTv7IWaslEfynV7FMw_T6Mg53yVEXSmV7kx7L2F7ZZyP-oH3GbD7IbdwSiE_QVhC7-fou-1qusmfP0J1dRB0_f2ITYZZp-wsJrrdu6w';
 
 function EventCard({ event, onPress }: { event: Event; onPress: () => void }) {
-  const [saved, setSaved] = useState(false);
+  const { toggleSave, isSaved } = useEvents();
+  const saved = isSaved(event.id);
   const timeLabel = event.isLive ? 'LIVE NOW' : event.date;
 
   const hostName = event.host?.name ?? 'DegConnect';
@@ -46,7 +46,11 @@ function EventCard({ event, onPress }: { event: Event; onPress: () => void }) {
       {/* Image */}
       <TouchableOpacity activeOpacity={0.95} onPress={onPress}>
         <View style={s.imageWrap}>
-          <Image source={{ uri: event.image }} style={s.image} contentFit="cover" />
+          <Image
+            source={event.image ? { uri: event.image } : require('@/assets/images/img.png')}
+            style={s.image}
+            contentFit="cover"
+          />
 
           {/* Live / category badge */}
           <View style={[s.badge, event.isLive ? s.badgeLive : { backgroundColor: 'rgba(0,0,0,0.45)' }]}>
@@ -57,7 +61,7 @@ function EventCard({ event, onPress }: { event: Event; onPress: () => void }) {
           {/* Save button overlaid top-right */}
           <TouchableOpacity
             style={s.saveOverlay}
-            onPress={() => setSaved(v => !v)}
+            onPress={() => toggleSave(event)}
             activeOpacity={0.8}
             hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}
           >
@@ -120,6 +124,7 @@ function EventCard({ event, onPress }: { event: Event; onPress: () => void }) {
 export default function EventFeed() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
+  const { feedEvents } = useEvents();
 
   return (
     <View style={s.root}>
@@ -142,7 +147,7 @@ export default function EventFeed() {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: insets.bottom + 100 }}
       >
-        {EVENTS.map(ev => (
+        {feedEvents.map(ev => (
           <EventCard
             key={ev.id}
             event={ev}
