@@ -9,6 +9,7 @@ export interface Event {
   isLive?: boolean;
   trending?: boolean;
   attendeeCount: number;
+  maxAttendees?: number;
   avatars: string[];
   isJoin: boolean;
   description: string;
@@ -51,6 +52,7 @@ export const ALL_EVENTS: Event[] = [
     isLive: true,
     trending: true,
     attendeeCount: 10,
+    maxAttendees: 12,
     avatars: [AV.b, AV.c, AV.a],
     isJoin: true,
     description: 'The outdoor courts next to the Eisstadion are alive. Full 5-on-5 running right now — need one more to balance teams. All levels welcome, just bring your A-game and some water. Games rotate every 20 minutes.',

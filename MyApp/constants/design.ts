@@ -1,47 +1,50 @@
-import { Platform } from 'react-native';
-
 export const C = {
-  primary: '#720009',
-  primaryContainer: '#9d0011',
+  primary: '#1a56db',           // main blue
+  primaryContainer: '#1e40af',  // deeper blue
   onPrimary: '#ffffff',
-  secondary: '#2b5bb5',
-  secondaryContainer: '#759efd',
-  secondaryFixed: '#d9e2ff',
+  secondary: '#1a56db',         // same blue — unified
+  secondaryContainer: '#3b82f6',
+  secondaryFixed: '#dbeafe',    // light blue tint
   onSecondary: '#ffffff',
-  onSecondaryContainer: '#00337c',
-  tertiary: '#463200',
-  tertiaryContainer: '#624800',
-  tertiaryFixed: '#ffdfa0',
+  onSecondaryContainer: '#1e3a8a',
+  tertiary: '#0ea5e9',          // sky blue accent
+  tertiaryContainer: '#0284c7',
+  tertiaryFixed: '#e0f2fe',
   onTertiary: '#ffffff',
-  onTertiaryContainer: '#edb41e',
-  bg: '#f9f9f9',
-  surface: '#f9f9f9',
-  surfaceContainer: '#eeeeee',
-  surfaceContainerLow: '#f3f3f3',
-  surfaceContainerHigh: '#e8e8e8',
-  surfaceContainerHighest: '#e2e2e2',
+  onTertiaryContainer: '#075985',
+  bg: '#f0f6ff',                // very faint blue-white background
+  surface: '#f0f6ff',
+  surfaceContainer: '#e1effe',
+  surfaceContainerLow: '#eaf2ff',
+  surfaceContainerHigh: '#d1e4fd',
+  surfaceContainerHighest: '#bfdbfe',
   surfaceLowest: '#ffffff',
-  onSurface: '#1a1c1c',
-  onSurfaceVariant: '#424751',
-  outline: '#737783',
-  outlineVariant: '#c2c6d3',
+  onSurface: '#0f172a',
+  onSurfaceVariant: '#334155',
+  outline: '#64748b',
+  outlineVariant: '#bfdbfe',
 };
 
 export const BORDER_COLORS: Record<string, string> = {
-  Nightlife: C.secondary,
-  Sports: C.primary,
-  Matchmaking: C.tertiary,
-  Outdoors: C.secondary,
+  Nightlife: C.primary,
+  Sports: C.tertiary,
+  Matchmaking: C.secondaryContainer,
+  Outdoors: C.tertiary,
   Social: C.primary,
-  Culture: C.tertiary,
-  Community: C.secondary,
-  Default: C.secondary,
+  Culture: C.secondaryContainer,
+  Community: C.primary,
+  Default: C.primary,
 };
 
 export const getBorderColor = (category: string) =>
   BORDER_COLORS[category] ?? BORDER_COLORS.Default;
 
 export const FONTS = {
-  serif: Platform.select({ ios: 'Georgia', android: 'serif', default: 'Georgia, serif' }),
-  sans: Platform.select({ ios: 'System', android: 'Roboto', default: 'Manrope, system-ui, sans-serif' }),
+  serif: 'Inter_700Bold',
+  sans: 'Inter_400Regular',
+  medium: 'Inter_500Medium',
+  semibold: 'Inter_600SemiBold',
+  bold: 'Inter_700Bold',
+  extrabold: 'Inter_800ExtraBold',
+  black: 'Inter_900Black',
 };

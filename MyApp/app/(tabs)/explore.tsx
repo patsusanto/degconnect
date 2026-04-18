@@ -523,8 +523,7 @@ const s = StyleSheet.create({
   },
   greeting: {
     fontSize: 28,
-    fontWeight: '900',
-    fontStyle: 'italic',
+    fontFamily: 'Inter_900Black',
     color: C.primary,
     letterSpacing: -0.5,
   },

@@ -87,6 +87,21 @@ export default function ProfileScreen() {
             </TouchableOpacity>
           </View>
           <Text style={s.name}>Marco</Text>
+
+          {/* Level badge */}
+          <View style={s.levelBadge}>
+            <MaterialIcons name="bolt" size={14} color="white" />
+            <Text style={s.levelText}>Level 4 · Connector</Text>
+          </View>
+
+          {/* XP bar */}
+          <View style={s.xpWrap}>
+            <View style={s.xpBar}>
+              <View style={[s.xpFill, { width: '72%' }]} />
+            </View>
+            <Text style={s.xpLabel}>720 / 1000 XP · Level 5 next</Text>
+          </View>
+
           <Text style={s.bio}>
             Connecting dots and people in Lower Bavaria. Always hunting for the best espresso and new tech events.
           </Text>
@@ -177,7 +192,7 @@ const s = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: 20,
     paddingVertical: 12,
-    backgroundColor: 'rgba(250,244,255,0.8)',
+    backgroundColor: 'rgba(240,246,255,0.9)',
   },
   headerLeft: { flexDirection: 'row', alignItems: 'center', gap: 14 },
   headerTitle: { fontSize: 20, fontWeight: '700', color: C.onSurface },
@@ -224,6 +239,43 @@ const s = StyleSheet.create({
     color: C.onSurface,
     letterSpacing: -0.5,
   },
+  levelBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    backgroundColor: C.primary,
+    paddingHorizontal: 12,
+    paddingVertical: 5,
+    borderRadius: 20,
+  },
+  levelText: {
+    color: 'white',
+    fontSize: 12,
+    fontWeight: '700',
+    letterSpacing: 0.3,
+  },
+  xpWrap: {
+    width: '70%',
+    gap: 5,
+    alignItems: 'center',
+  },
+  xpBar: {
+    width: '100%',
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: C.surfaceHigh,
+    overflow: 'hidden',
+  },
+  xpFill: {
+    height: '100%',
+    borderRadius: 3,
+    backgroundColor: C.primary,
+  },
+  xpLabel: {
+    fontSize: 11,
+    color: C.onSurfaceVariant,
+    fontWeight: '500',
+  },
   bio: {
     fontSize: 14,
     color: C.onSurfaceVariant,
@@ -263,7 +315,7 @@ const s = StyleSheet.create({
   },
   sectionTitle: { fontSize: 18, fontWeight: '800', color: C.onSurface, letterSpacing: -0.3 },
   selectedBadge: {
-    backgroundColor: 'rgba(68,65,227,0.12)',
+    backgroundColor: 'rgba(26,86,219,0.12)',
     paddingHorizontal: 12,
     paddingVertical: 4,
     borderRadius: 20,
@@ -307,7 +359,7 @@ const s = StyleSheet.create({
     left: 0,
     right: 0,
     height: 80,
-    backgroundColor: 'rgba(245,238,255,0.85)',
+    backgroundColor: 'rgba(224,242,254,0.85)',
   },
   locationBottom: {
     flexDirection: 'row',

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   ScrollView,
@@ -8,55 +8,112 @@ import {
   StatusBar,
 } from 'react-native';
 import { Image } from 'expo-image';
+import DegConnectLogo from '@/assets/images/degconnect.svg';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { ALL_EVENTS, FEED_EVENT_IDS, Event } from '@/constants/events';
-import { C, getBorderColor, FONTS } from '@/constants/design';
+import { C, FONTS } from '@/constants/design';
 
 const EVENTS = ALL_EVENTS.filter(e => FEED_EVENT_IDS.includes(e.id));
 
-const PROFILE_IMG =
-  'https://lh3.googleusercontent.com/aida-public/AB6AXuCeYwP3zwzpx-B-uCkiMCn7GwT5a40e9WIqS5bvLIXzDstpVFCVNBcPSaV25MaG4X8H_QqvHZPVw2iUU692AKwSe5E2BKknFERapAIFIifdEEt9S7bLUhsnQG2rQFoxBhYZlDEBkQ7vVp-G9IxWfU0q8pXcQ9elkwukLy1HTTv7IWaslEfynV7FMw_T6Mg53yVEXSmV7kx7L2F7ZZyP-oH3GbD7IbdwSiE_QVhC7-fou-1qusmfP0J1dRB0_f2ITYZZp-wsJrrdu6w';
+const DEFAULT_AVATAR = 'https://lh3.googleusercontent.com/aida-public/AB6AXuCeYwP3zwzpx-B-uCkiMCn7GwT5a40e9WIqS5bvLIXzDstpVFCVNBcPSaV25MaG4X8H_QqvHZPVw2iUU692AKwSe5E2BKknFERapAIFIifdEEt9S7bLUhsnQG2rQFoxBhYZlDEBkQ7vVp-G9IxWfU0q8pXcQ9elkwukLy1HTTv7IWaslEfynV7FMw_T6Mg53yVEXSmV7kx7L2F7ZZyP-oH3GbD7IbdwSiE_QVhC7-fou-1qusmfP0J1dRB0_f2ITYZZp-wsJrrdu6w';
 
 function EventCard({ event, onPress }: { event: Event; onPress: () => void }) {
-  const borderColor = getBorderColor(event.category);
+  const [saved, setSaved] = useState(false);
+  const timeLabel = event.isLive ? 'LIVE NOW' : event.date;
 
-  const timeLabel = event.isLive ? 'NOW' : event.date.split('•')[1]?.trim() ?? event.date;
+  const hostName = event.host?.name ?? 'DegConnect';
+  const hostAvatar = event.host?.avatar ?? DEFAULT_AVATAR;
 
   return (
-    <TouchableOpacity style={[s.card, { borderLeftColor: borderColor }]} onPress={onPress} activeOpacity={0.82}>
-      <View style={s.cardTop}>
-        <View style={s.cardTitleWrap}>
-          <Text style={s.cardTitle}>{event.title}</Text>
-          <Text style={s.cardLocation}>{event.location}</Text>
+    <View style={s.card}>
+      {/* Host header */}
+      <View style={s.cardHeader}>
+        <View style={s.hostAvatarWrap}>
+          <Image source={{ uri: hostAvatar }} style={s.hostAvatar} contentFit="cover" />
+          {event.isLive && <View style={s.hostLiveBadge} />}
         </View>
-        <View style={[s.timePill, { borderColor: C.outlineVariant }]}>
-          <MaterialIcons name="schedule" size={13} color={borderColor} />
-          <Text style={[s.timeText, { color: borderColor }]}>{timeLabel}</Text>
+        <View style={s.hostInfo}>
+          <Text style={s.hostName}>{hostName}</Text>
+          <Text style={s.hostMeta}>{event.category} · {event.location}</Text>
         </View>
-      </View>
-
-      <View style={s.cardBottom}>
-        <View style={s.avatarRow}>
-          {event.avatars.slice(0, 2).map((uri, i) => (
-            <Image
-              key={i}
-              source={{ uri }}
-              style={[s.avatar, i > 0 && { marginLeft: -8 }]}
-              contentFit="cover"
-            />
-          ))}
-          <View style={[s.avatarCount, { marginLeft: -8 }]}>
-            <Text style={s.avatarCountText}>+{event.attendeeCount}</Text>
-          </View>
-        </View>
-
-        <TouchableOpacity style={s.joinBtn} onPress={onPress} activeOpacity={0.85}>
-          <Text style={s.joinBtnText}>{event.cta}</Text>
+        <TouchableOpacity hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}>
+          <MaterialIcons name="more-horiz" size={20} color={C.onSurfaceVariant} />
         </TouchableOpacity>
       </View>
-    </TouchableOpacity>
+
+      {/* Image */}
+      <TouchableOpacity activeOpacity={0.95} onPress={onPress}>
+        <View style={s.imageWrap}>
+          <Image source={{ uri: event.image }} style={s.image} contentFit="cover" />
+
+          {/* Live / category badge */}
+          <View style={[s.badge, event.isLive ? s.badgeLive : { backgroundColor: 'rgba(0,0,0,0.45)' }]}>
+            {event.isLive && <View style={s.liveDot} />}
+            <Text style={s.badgeText}>{timeLabel}</Text>
+          </View>
+
+          {/* Save button overlaid top-right */}
+          <TouchableOpacity
+            style={s.saveOverlay}
+            onPress={() => setSaved(v => !v)}
+            activeOpacity={0.8}
+            hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}
+          >
+            <MaterialIcons
+              name={saved ? 'bookmark' : 'bookmark-border'}
+              size={22}
+              color={saved ? C.secondary : 'white'}
+            />
+          </TouchableOpacity>
+        </View>
+      </TouchableOpacity>
+
+      {/* Body */}
+      <View style={s.body}>
+        {/* Title row */}
+        <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
+          <Text style={s.title}>{event.title}</Text>
+        </TouchableOpacity>
+
+        {/* Location */}
+        <View style={s.locationRow}>
+          <MaterialIcons name="location-on" size={13} color={C.onSurfaceVariant} />
+          <Text style={s.location}>{event.location}</Text>
+        </View>
+
+        {/* Description */}
+        {event.description ? (
+          <Text style={s.description} numberOfLines={2}>{event.description}</Text>
+        ) : null}
+
+        {/* Footer */}
+        <View style={s.footer}>
+          {/* Avatars + count */}
+          <View style={s.avatarRow}>
+            {event.avatars.slice(0, 2).map((uri, i) => (
+              <Image
+                key={i}
+                source={{ uri }}
+                style={[s.avatar, i > 0 && { marginLeft: -8 }]}
+                contentFit="cover"
+              />
+            ))}
+            <Text style={s.attendeeText}>
+              {event.maxAttendees
+                ? `${event.attendeeCount}/${event.maxAttendees} joined`
+                : `${event.attendeeCount} going`}
+            </Text>
+          </View>
+
+          {/* CTA */}
+          <TouchableOpacity style={s.ctaBtn} onPress={onPress} activeOpacity={0.85}>
+            <Text style={s.ctaText}>{event.cta}</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </View>
   );
 }
 
@@ -65,182 +122,217 @@ export default function EventFeed() {
   const router = useRouter();
 
   return (
-    <View style={[s.root, { backgroundColor: C.bg }]}>
+    <View style={s.root}>
       <StatusBar barStyle="dark-content" backgroundColor={C.bg} />
 
       {/* Header */}
-      <View style={[s.header, { paddingTop: insets.top + 8 }]}>
-        <Text style={s.logoText}>Deg Connect</Text>
+      <View style={[s.header, { paddingTop: insets.top + 4 }]}>
+        <TouchableOpacity onPress={() => router.push('/create-event')} activeOpacity={0.6} hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}>
+          <MaterialIcons name="add" size={28} color={C.primary} />
+        </TouchableOpacity>
+        <View style={s.logoCenter} pointerEvents="none">
+          <DegConnectLogo width={130} height={38} viewBox="260 355 510 300" fill={C.primary} />
+        </View>
+        <TouchableOpacity style={s.notifBtn}>
+          <MaterialIcons name="notifications-none" size={22} color={C.onSurfaceVariant} />
+        </TouchableOpacity>
       </View>
 
       <ScrollView
         showsVerticalScrollIndicator={false}
-        contentContainerStyle={[s.scrollContent, { paddingBottom: insets.bottom + 100 }]}
+        contentContainerStyle={{ paddingBottom: insets.bottom + 100 }}
       >
-
-        {/* Event cards */}
-        <View style={s.cardList}>
-          {EVENTS.map(ev => (
-            <EventCard
-              key={ev.id}
-              event={ev}
-              onPress={() => router.push(`/event/${ev.id}`)}
-            />
-          ))}
-        </View>
+        {EVENTS.map(ev => (
+          <EventCard
+            key={ev.id}
+            event={ev}
+            onPress={() => router.push(`/event/${ev.id}`)}
+          />
+        ))}
       </ScrollView>
 
-      {/* FAB */}
-      <TouchableOpacity style={[s.fab, { bottom: insets.bottom + 92 }]} activeOpacity={0.85}>
-        <MaterialIcons name="add" size={26} color="white" />
-      </TouchableOpacity>
     </View>
   );
 }
 
 const s = StyleSheet.create({
-  root: { flex: 1 },
+  root: { flex: 1, backgroundColor: C.bg },
 
   header: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: 24,
-    paddingBottom: 12,
-    backgroundColor: 'rgba(249,249,249,0.9)',
+    paddingHorizontal: 20,
+    paddingBottom: 6,
+    backgroundColor: C.bg,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: C.outlineVariant,
   },
-  logoText: {
-    fontSize: 22,
-    fontFamily: FONTS.serif,
-    fontStyle: 'italic',
-    fontWeight: '700',
-    color: C.secondary,
-    letterSpacing: -0.3,
+  logoCenter: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    alignItems: 'center',
   },
-  profileAvatar: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    borderWidth: 1,
-    borderColor: C.outlineVariant,
-  },
-
-  scrollContent: { paddingHorizontal: 24 },
-
-  editorialHeader: { paddingTop: 32, paddingBottom: 28, gap: 10 },
-  pulseLabel: {
-    fontSize: 10,
-    fontFamily: FONTS.sans,
-    fontWeight: '700',
-    textTransform: 'uppercase',
-    letterSpacing: 3,
-    color: C.primary,
-  },
-  editorialTitle: {
-    fontSize: 44,
-    fontFamily: FONTS.serif,
-    fontWeight: '700',
-    color: C.onSurface,
-    lineHeight: 50,
-    letterSpacing: -1,
-  },
-  editorialTitleItalic: {
-    fontStyle: 'italic',
-    color: C.secondary,
-  },
-  editorialSubtitle: {
-    fontSize: 15,
-    color: C.onSurfaceVariant,
-    lineHeight: 22,
-    fontFamily: FONTS.sans,
-    maxWidth: 300,
-  },
-
-  cardList: { gap: 14 },
+  notifBtn: { padding: 4 },
 
   card: {
     backgroundColor: C.surfaceLowest,
-    borderRadius: 14,
-    borderLeftWidth: 4,
-    paddingHorizontal: 18,
-    paddingVertical: 20,
-    gap: 16,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.06,
-    shadowRadius: 8,
-    elevation: 3,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: C.outlineVariant,
+    marginBottom: 4,
   },
-  cardTop: {
+
+  cardHeader: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    gap: 12,
+    alignItems: 'center',
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+    gap: 10,
   },
-  cardTitleWrap: { flex: 1, gap: 4 },
-  cardTitle: {
-    fontSize: 21,
-    fontFamily: FONTS.serif,
+  hostAvatarWrap: {
+    position: 'relative',
+  },
+  hostAvatar: {
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    borderWidth: 1.5,
+    borderColor: C.outlineVariant,
+  },
+  hostLiveBadge: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    width: 11,
+    height: 11,
+    borderRadius: 6,
+    backgroundColor: '#1a56db',
+    borderWidth: 2,
+    borderColor: C.surfaceLowest,
+  },
+  hostInfo: { flex: 1, gap: 1 },
+  hostName: {
+    fontSize: 13,
     fontWeight: '700',
     color: C.onSurface,
-    lineHeight: 26,
+    fontFamily: FONTS.sans,
   },
-  cardLocation: {
-    fontSize: 13,
+  hostMeta: {
+    fontSize: 11,
     color: C.onSurfaceVariant,
     fontFamily: FONTS.sans,
   },
-  timePill: {
+
+  imageWrap: {
+    width: '100%',
+    height: 260,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+  },
+  badge: {
+    position: 'absolute',
+    top: 12,
+    left: 12,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 4,
-    backgroundColor: C.surfaceContainer,
+    gap: 5,
     paddingHorizontal: 10,
     paddingVertical: 5,
     borderRadius: 20,
-    borderWidth: 1,
   },
-  timeText: {
+  badgeLive: { backgroundColor: C.primary },
+  liveDot: {
+    width: 6,
+    height: 6,
+    borderRadius: 3,
+    backgroundColor: 'rgba(255,255,255,0.85)',
+  },
+  badgeText: {
+    color: 'white',
     fontSize: 10,
     fontWeight: '700',
-    fontFamily: FONTS.sans,
     letterSpacing: 0.8,
-  },
-  cardBottom: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  avatarRow: { flexDirection: 'row', alignItems: 'center' },
-  avatar: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    borderWidth: 2,
-    borderColor: C.surfaceLowest,
-  },
-  avatarCount: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    backgroundColor: C.secondaryFixed,
-    borderWidth: 2,
-    borderColor: C.surfaceLowest,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  avatarCountText: {
-    fontSize: 9,
-    fontWeight: '700',
-    color: C.onSecondaryContainer,
+    textTransform: 'uppercase',
     fontFamily: FONTS.sans,
   },
 
-  joinBtn: {
+  saveOverlay: {
+    position: 'absolute',
+    top: 10,
+    right: 12,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: 'rgba(0,0,0,0.35)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  body: {
+    paddingHorizontal: 16,
+    paddingVertical: 14,
+    gap: 6,
+  },
+
+  title: {
+    fontSize: 19,
+    fontFamily: FONTS.bold,
+    color: C.onSurface,
+    lineHeight: 24,
+  },
+
+  locationRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 3,
+  },
+  location: {
+    fontSize: 12,
+    color: C.onSurfaceVariant,
+    fontFamily: FONTS.sans,
+  },
+
+  description: {
+    fontSize: 13,
+    color: C.onSurfaceVariant,
+    lineHeight: 19,
+    fontFamily: FONTS.sans,
+    marginTop: 2,
+  },
+
+  footer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 8,
+  },
+
+  avatarRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  avatar: {
+    width: 28,
+    height: 28,
+    borderRadius: 14,
+    borderWidth: 2,
+    borderColor: C.surfaceLowest,
+  },
+  attendeeText: {
+    fontSize: 12,
+    fontWeight: '600',
+    color: C.onSurfaceVariant,
+    fontFamily: FONTS.sans,
+    marginLeft: 4,
+  },
+
+  ctaBtn: {
     backgroundColor: C.secondary,
-    paddingHorizontal: 22,
+    paddingHorizontal: 20,
     paddingVertical: 9,
     borderRadius: 8,
     shadowColor: C.secondary,
@@ -249,28 +341,13 @@ const s = StyleSheet.create({
     shadowRadius: 8,
     elevation: 4,
   },
-  joinBtnText: {
-    color: '#ffffff',
+  ctaText: {
+    color: 'white',
     fontSize: 11,
     fontWeight: '700',
     textTransform: 'uppercase',
-    letterSpacing: 1.2,
+    letterSpacing: 1,
     fontFamily: FONTS.sans,
   },
 
-  fab: {
-    position: 'absolute',
-    right: 20,
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    backgroundColor: C.secondary,
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: C.secondary,
-    shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.35,
-    shadowRadius: 12,
-    elevation: 10,
-  },
 });
