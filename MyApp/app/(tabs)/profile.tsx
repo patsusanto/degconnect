@@ -83,7 +83,7 @@ export default function ProfileScreen() {
               <MaterialIcons name="edit" size={14} color="white" />
             </TouchableOpacity>
           </View>
-          <Text style={s.name}>Marco</Text>
+          <Text style={s.name}>{account.name}</Text>
 
           {/* Level badge */}
           <View style={s.levelBadge}>
@@ -99,7 +99,6 @@ export default function ProfileScreen() {
             <Text style={s.xpLabel}>720 / 1000 XP · Level 5 next</Text>
           </View>
 
-          <Text style={s.name}>{account.name}</Text>
           <Text style={s.bio}>
             Based in {account.city}. Focused on finding the right people, the right events and a feed that matches your interests.
           </Text>

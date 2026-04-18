@@ -22,12 +22,12 @@ export default function CreateEvent() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
 
-  const [title, setTitle] = useState('');
-  const [category, setCategory] = useState('');
-  const [location, setLocation] = useState('');
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
-  const [description, setDescription] = useState('');
+  const [title, setTitle] = useState('Spontan Volleyball im Stadtpark');
+  const [category, setCategory] = useState('Sports');
+  const [location, setLocation] = useState('Stadtpark, Deggendorf');
+  const [date, setDate] = useState('Today');
+  const [time, setTime] = useState('6:00 PM');
+  const [description, setDescription] = useState('Casual pick-up volleyball in the Stadtpark. All levels welcome — just show up and we\'ll sort teams on the spot. Bring your own water, nets are already set up.');
   const [isLive, setIsLive] = useState(false);
 
   const canPost = title.trim().length > 0 && category.length > 0 && location.trim().length > 0;

@@ -20,8 +20,8 @@ export default function OnboardingScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
   const { completeOnboarding, hasCompletedOnboarding } = useOnboarding();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+  const [name, setName] = useState('Marco');
+  const [email, setEmail] = useState('marco@degconnect.de');
   const [city, setCity] = useState('Deggendorf');
   const [selectedInterests, setSelectedInterests] = useState<string[]>(DEFAULT_INTERESTS);
 
