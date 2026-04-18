@@ -13,6 +13,7 @@ import {
 } from '@expo-google-fonts/inter';
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import { OnboardingProvider } from '@/context/onboarding-context';
 
 export const unstable_settings = {
   anchor: '(tabs)',
@@ -41,5 +42,16 @@ export default function RootLayout() {
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
+    <OnboardingProvider>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen name="index" options={{ headerShown: false }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="event/[id]" options={{ headerShown: false, animation: 'slide_from_bottom' }} />
+          <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+        </Stack>
+        <StatusBar style="auto" />
+      </ThemeProvider>
+    </OnboardingProvider>
   );
 }
