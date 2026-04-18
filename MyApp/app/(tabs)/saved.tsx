@@ -33,8 +33,7 @@ const s = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: '800',
-    fontStyle: 'italic',
+    fontFamily: 'Inter_800ExtraBold',
     color: DC.secondary,
     letterSpacing: -0.5,
   },
@@ -55,13 +54,13 @@ const s = StyleSheet.create({
     marginBottom: 4,
   },
   emptyTitle: {
-    color: '#312950',
+    color: '#0f172a',
     fontSize: 18,
     fontWeight: '700',
     textAlign: 'center',
   },
   emptySubtitle: {
-    color: '#5e5680',
+    color: '#334155',
     fontSize: 14,
     textAlign: 'center',
     lineHeight: 20,

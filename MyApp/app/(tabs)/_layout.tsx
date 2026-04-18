@@ -1,45 +1,13 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import { HapticTab } from '@/components/haptic-tab';
-import { C } from '@/constants/design';
+import BottomTabBar from '@/components/bottom-tab-bar';
 
 export default function TabLayout() {
   return (
     <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: C.secondary,
-        tabBarInactiveTintColor: C.onSurfaceVariant,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarStyle: {
-          position: 'absolute',
-          bottom: 20,
-          left: 20,
-          right: 20,
-          height: 64,
-          borderRadius: 32,
-          backgroundColor: 'rgba(255,255,255,0.96)',
-          borderTopWidth: 0,
-          paddingBottom: 0,
-          paddingTop: 0,
-          shadowColor: '#1a1c1c',
-          shadowOffset: { width: 0, height: 8 },
-          shadowOpacity: 0.12,
-          shadowRadius: 24,
-          elevation: 18,
-        },
-        tabBarItemStyle: {
-          paddingVertical: 4,
-        },
-        tabBarLabelStyle: {
-          fontSize: 9,
-          fontWeight: '700',
-          textTransform: 'uppercase',
-          letterSpacing: 0.8,
-          marginTop: 1,
-        },
-      }}
+      tabBar={props => <BottomTabBar {...props} />}
+      screenOptions={{ headerShown: false }}
     >
       <Tabs.Screen
         name="index"

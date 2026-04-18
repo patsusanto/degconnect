@@ -136,7 +136,7 @@ export default function EventDetail() {
               <View style={s.requirementsCard}>
                 {event.requirements.map((req, i) => (
                   <View key={i} style={s.reqRow}>
-                    <MaterialIcons name="check-circle" size={18} color="#22c55e" />
+                    <MaterialIcons name="check-circle" size={18} color="#1a56db" />
                     <Text style={s.reqText}>{req}</Text>
                   </View>
                 ))}
